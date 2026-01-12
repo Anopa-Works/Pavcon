@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pavcon Industries Zimbabwe - The definitive authority in architectural paving and civil construction.">
+    <meta name="description" content="Pavcon Industries Zimbabwe - The definitive authority in architectural paving.">
     <title>Pavcon Industries | The Definitive Standard</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,227 +34,197 @@
 
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .hero-mask {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
         }
 
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .reveal-on-scroll.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        .thin-border {
+            border: 1px solid rgba(26, 26, 27, 0.08);
+        }
     </style>
 </head>
 <body class="bg-stone text-onyx antialiased">
 
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 py-6">
-        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-700 py-8">
+        <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-egyptian flex items-center justify-center text-white font-bold text-lg">P</div>
+                <div class="w-10 h-10 bg-egyptian flex items-center justify-center text-white font-bold text-xl">P</div>
                 <div class="flex flex-col">
-                    <span class="text-white font-display font-extrabold text-sm tracking-tighter leading-none transition-colors duration-500" id="logo-text-top">PAVCON</span>
-                    <span class="text-white font-display font-bold text-[8px] tracking-[0.3em] transition-colors duration-500" id="logo-text-bottom">INDUSTRIES</span>
+                    <span class="text-white font-display font-extrabold text-base tracking-tighter leading-none transition-all duration-500" id="logo-text-top">PAVCON</span>
+                    <span class="text-white font-display font-bold text-[9px] tracking-[0.4em] transition-all duration-500" id="logo-text-bottom">INDUSTRIES</span>
                 </div>
             </div>
             
-            <div class="hidden md:flex items-center space-x-12 text-[11px] font-semibold tracking-widest uppercase">
-                <a href="#home" class="text-white/80 hover:text-white transition nav-link">Home</a>
-                <a href="#expertise" class="text-white/80 hover:text-white transition nav-link">Expertise</a>
-                <a href="#projects" class="text-white/80 hover:text-white transition nav-link">Portfolio</a>
-                <a href="#contact" class="bg-white text-egyptian px-6 py-2 rounded-sm hover:bg-egyptian hover:text-white transition">Inquire</a>
+            <div class="hidden md:flex items-center space-x-14 text-[11px] font-semibold tracking-[0.2em] uppercase">
+                <a href="#home" class="text-white/70 hover:text-white transition nav-link">Home</a>
+                <a href="#expertise" class="text-white/70 hover:text-white transition nav-link">Expertise</a>
+                <a href="#projects" class="text-white/70 hover:text-white transition nav-link">Portfolio</a>
+                <a href="#contact" class="bg-chilli text-white px-8 py-3 rounded-sm hover:bg-egyptian transition shadow-2xl shadow-chilli/20">INQUIRE</a>
             </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-white">
-                <i class="fa-solid fa-bars-staggered text-xl"></i>
-            </button>
         </div>
     </nav>
 
     <section id="home" class="relative h-screen flex items-center justify-start overflow-hidden hero-mask">
-        <div class="max-w-7xl mx-auto px-6 w-full relative z-10 pt-20">
-            <div class="max-w-2xl">
-                <h2 class="text-white text-xs font-bold tracking-[0.5em] uppercase mb-6 opacity-80">The Only Solution. The Best Choice.</h2>
-                <h1 class="text-5xl md:text-7xl font-display font-extrabold text-white mb-8 leading-none">
-                    Unrivaled Presence. <br>Permanent Quality.
+        <div class="max-w-7xl mx-auto px-8 w-full relative z-10 pt-20">
+            <div class="max-w-3xl">
+                <h2 class="text-white text-xs font-bold tracking-[0.6em] uppercase mb-8 opacity-90">Zimbabwe's Gold Standard</h2>
+                <h1 class="text-6xl md:text-8xl font-display font-extrabold text-white mb-10 leading-[0.9] tracking-tighter">
+                    Architectural <br> <span class="italic font-light">Permanence.</span>
                 </h1>
-                <p class="text-white/80 text-lg md:text-xl font-light mb-12 leading-relaxed border-l-2 border-chilli pl-6">
-                    We specialize in the art of the exterior. From Zimbabwe’s most prestigious driveways to critical civil infrastructure, Pavcon is the definitive standard in durability.
+                <p class="text-white/80 text-xl font-light mb-14 leading-relaxed max-w-xl">
+                    Quietly dominating Harare’s most prestigious estates through precision engineering and unrivaled surface design.
                 </p>
-                <div class="flex gap-6">
-                    <a href="#expertise" class="bg-egyptian text-white px-8 py-4 text-xs font-bold tracking-widest hover:bg-blue-800 transition uppercase shadow-xl">Our Capabilities</a>
-                    <a href="#contact" class="backdrop-blur-md bg-white/10 text-white border border-white/30 px-8 py-4 text-xs font-bold tracking-widest hover:bg-white/20 transition uppercase">Direct Inquiry</a>
+                <div class="flex items-center gap-10">
+                    <a href="#expertise" class="text-white font-bold text-xs tracking-[0.3em] uppercase border-b-2 border-chilli pb-2 hover:border-white transition">Explore Capabilities</a>
+                    <div class="hidden md:block w-20 h-px bg-white/30"></div>
                 </div>
             </div>
         </div>
-        <div class="absolute inset-0 bg-black/40 z-0"></div>
     </section>
 
-    <section class="py-20 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-16">
-            <div class="reveal-on-scroll">
-                <h4 class="text-chilli font-bold text-xs tracking-widest uppercase mb-4">Engineering</h4>
-                <p class="text-lg font-medium leading-snug">45MPa Compressive Strength as standard. We build for heavy-traffic longevity.</p>
-            </div>
-            <div class="reveal-on-scroll" style="transition-delay: 0.1s;">
-                <h4 class="text-chilli font-bold text-xs tracking-widest uppercase mb-4">Aesthetics</h4>
-                <p class="text-lg font-medium leading-snug">Precision geometry. Our lines are laser-checked for architectural perfection.</p>
-            </div>
-            <div class="reveal-on-scroll" style="transition-delay: 0.2s;">
-                <h4 class="text-chilli font-bold text-xs tracking-widest uppercase mb-4">Legacy</h4>
-                <p class="text-lg font-medium leading-snug">15+ years serving Harare’s elite estates and commercial landmarks.</p>
+    <section class="bg-stone py-32 border-b border-onyx/5">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <div class="lg:col-span-7 reveal-on-scroll">
+                    <span class="text-chilli font-bold tracking-[0.4em] text-[10px] uppercase block mb-6">The Pavcon Difference</span>
+                    <h3 class="text-4xl md:text-5xl font-display font-extrabold leading-tight tracking-tight">
+                        We don’t just lay bricks. <br>
+                        <span class="text-egyptian">We engineer legacy.</span>
+                    </h3>
+                    <p class="mt-10 text-onyx/60 text-lg leading-relaxed max-w-xl">
+                        Quality in construction is often invisible—until it fails. At Pavcon, we prioritize the sub-surface integrity and material density that ensures your property remains a masterpiece for decades.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5 reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <div class="relative group">
+                        <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=800" alt="Precision Paving" class="w-full h-80 object-cover grayscale transition duration-1000 group-hover:grayscale-0 shadow-2xl">
+                        <div class="absolute -bottom-8 -left-8 bg-white thin-border p-8 flex flex-col gap-4">
+                            <div>
+                                <span class="block text-3xl font-display font-black text-egyptian">45MPa</span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase opacity-50">Compression Strength</span>
+                            </div>
+                            <div class="w-12 h-px bg-chilli"></div>
+                            <div>
+                                <span class="block text-3xl font-display font-black text-egyptian">15+</span>
+                                <span class="text-[9px] font-bold tracking-widest uppercase opacity-50">Years of Mastery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <section id="expertise" class="py-32 bg-stone">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-20">
-                <span class="text-egyptian font-bold tracking-[0.3em] uppercase text-[10px]">What We Do</span>
-                <h3 class="text-4xl font-display font-extrabold mt-4">Structural Mastery.</h3>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+                <div class="reveal-on-scroll">
+                    <span class="text-egyptian font-bold tracking-[0.4em] uppercase text-[10px]">Strategic Solutions</span>
+                    <h3 class="text-4xl font-display font-extrabold mt-4">Curated Capability.</h3>
+                </div>
+                <p class="reveal-on-scroll text-onyx/50 max-w-xs text-sm italic" style="transition-delay: 0.1s;">
+                    Turnkey execution from architectural consultation to the final seal.
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="group relative aspect-square overflow-hidden bg-white">
-                    <img src="https://images.unsplash.com/photo-1590059302111-137a7f43325c?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Driveway">
-                    <div class="absolute inset-0 bg-onyx/40 flex flex-col justify-end p-8 text-white">
-                        <h5 class="font-bold text-lg">Driveway Architecture</h5>
-                        <p class="text-[10px] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition duration-500">The first impression</p>
-                    </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="reveal-on-scroll bg-white p-10 thin-border hover:shadow-2xl transition-all duration-500 group">
+                    <i class="fa-solid fa-compass-drafting text-chilli text-2xl mb-8 block"></i>
+                    <h5 class="text-xl font-bold mb-4">Site Engineering</h5>
+                    <p class="text-onyx/60 text-sm leading-relaxed">Advanced drainage assessment and topographical planning before a single stone is laid.</p>
                 </div>
-                <div class="group relative aspect-square overflow-hidden bg-white">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Kerbstones">
-                    <div class="absolute inset-0 bg-onyx/40 flex flex-col justify-end p-8 text-white">
-                        <h5 class="font-bold text-lg">Precision Kerbing</h5>
-                        <p class="text-[10px] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition duration-500">Structural borders</p>
-                    </div>
+                <div class="reveal-on-scroll bg-white p-10 thin-border hover:shadow-2xl transition-all duration-500 group" style="transition-delay: 0.1s;">
+                    <i class="fa-solid fa-cube text-chilli text-2xl mb-8 block"></i>
+                    <h5 class="text-xl font-bold mb-4">Bespoke Paving</h5>
+                    <p class="text-onyx/60 text-sm leading-relaxed">Custom interlocking patterns using high-density materials for heavy-traffic estates.</p>
                 </div>
-                <div class="group relative aspect-square overflow-hidden bg-white">
-                    <img src="https://images.unsplash.com/photo-1621262657376-78486064d142?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Civil Works">
-                    <div class="absolute inset-0 bg-onyx/40 flex flex-col justify-end p-8 text-white">
-                        <h5 class="font-bold text-lg">Civil Construction</h5>
-                        <p class="text-[10px] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition duration-500">Foundation to finish</p>
-                    </div>
+                <div class="reveal-on-scroll bg-white p-10 thin-border hover:shadow-2xl transition-all duration-500 group" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-building-columns text-chilli text-2xl mb-8 block"></i>
+                    <h5 class="text-xl font-bold mb-4">Civil Building</h5>
+                    <p class="text-onyx/60 text-sm leading-relaxed">Structural work including boundary walls, structural kerbing, and foundational plumbing.</p>
                 </div>
-                <div class="group relative aspect-square overflow-hidden bg-white">
-                    <img src="https://images.unsplash.com/photo-1558603668-6570496b66f8?q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Landscape">
-                    <div class="absolute inset-0 bg-onyx/40 flex flex-col justify-end p-8 text-white">
-                        <h5 class="font-bold text-lg">Landscaping Architecture</h5>
-                        <p class="text-[10px] uppercase tracking-widest mt-2 opacity-0 group-hover:opacity-100 transition duration-500">Total transformation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-32 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-center">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000" class="w-full h-[600px] object-cover shadow-2xl" alt="Luxury Estate Paving">
-                    <div class="absolute -bottom-10 -right-10 bg-egyptian text-white p-12 hidden md:block">
-                        <p class="text-3xl font-display font-bold">500+</p>
-                        <p class="text-[10px] uppercase tracking-widest opacity-70">Properties Elevated</p>
-                    </div>
-                </div>
-                <div>
-                    <span class="text-chilli font-bold tracking-widest text-[10px] uppercase">Portfolio Spotlight</span>
-                    <h3 class="text-4xl font-display font-extrabold mt-4 mb-8">Refining Zimbabwe’s Residential Landscape.</h3>
-                    <p class="text-gray-600 leading-relaxed mb-8">
-                        Our work at Borrowdale Brooke represents the pinnacle of surface engineering. We integrated 80mm heavy-duty pavers with a custom drainage system to ensure the driveway remains pristine through every rainy season.
-                    </p>
-                    <div class="grid grid-cols-2 gap-8 mb-12">
-                        <div>
-                            <p class="text-xl font-bold">14 Days</p>
-                            <p class="text-[10px] uppercase text-gray-400">Total Installation</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-bold">100%</p>
-                            <p class="text-[10px] uppercase text-gray-400">Precision Rating</p>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/263772403722" class="inline-flex items-center gap-4 text-egyptian font-bold text-xs tracking-widest hover:text-chilli transition">
-                        INQUIRE ABOUT YOUR PROJECT <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                <div class="reveal-on-scroll bg-white p-10 thin-border hover:shadow-2xl transition-all duration-500 group" style="transition-delay: 0.3s;">
+                    <i class="fa-solid fa-gem text-chilli text-2xl mb-8 block"></i>
+                    <h5 class="text-xl font-bold mb-4">Luxury Finish</h5>
+                    <p class="text-onyx/60 text-sm leading-relaxed">The signature Pavcon seal. A protective coating that keeps surfaces vibrant and moss-free.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer id="contact" class="bg-onyx text-white py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12 mb-20">
-                <div class="col-span-2">
-                    <h5 class="text-2xl font-display font-extrabold mb-6 tracking-tighter">PAVCON INDUSTRIES</h5>
-                    <p class="text-white/50 max-w-sm mb-8 leading-relaxed">
-                        The definitive solution for architectural surfaces and civil construction in Harare. Excellence is not our goal; it is our starting point.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-chilli transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/263772403722" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-chilli transition"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-2 gap-20 items-center border-b border-white/5 pb-20">
+                <div>
+                    <h4 class="text-4xl md:text-5xl font-display font-extrabold mb-8">Ready to define <br>your presence?</h4>
+                    <p class="text-white/40 text-lg mb-10 max-w-sm">Direct lines are open for elite residential and commercial inquiries in Harare.</p>
+                    <a href="https://wa.me/263772403722" class="inline-block bg-chilli px-10 py-5 text-xs font-bold tracking-[0.3em] hover:bg-white hover:text-onyx transition-all duration-500">INITIATE CONSULTATION</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                    <div>
+                        <span class="text-chilli font-bold text-[10px] uppercase tracking-widest block mb-4">Call Direct</span>
+                        <p class="text-xl font-medium">+263 77 240 3722</p>
+                    </div>
+                    <div>
+                        <span class="text-chilli font-bold text-[10px] uppercase tracking-widest block mb-4">Location</span>
+                        <p class="text-xl font-medium">Eastlea, Harare</p>
                     </div>
                 </div>
-                <div>
-                    <h6 class="text-chilli font-bold text-[10px] uppercase tracking-widest mb-6">Inquiries</h6>
-                    <p class="text-lg font-medium">+263 77 240 3722</p>
-                    <p class="text-white/50 text-sm mt-2">pavcon2@gmail.com</p>
-                </div>
-                <div>
-                    <h6 class="text-chilli font-bold text-[10px] uppercase tracking-widest mb-6">HQ</h6>
-                    <p class="text-sm leading-relaxed text-white/50">
-                        Eastlea, Harare<br>
-                        Zimbabwe
-                    </p>
-                </div>
             </div>
-            <div class="pt-12 border-t border-white/5 text-[10px] uppercase tracking-widest text-white/30 flex flex-col md:flex-row justify-between">
-                <p>&copy; 2026 Pavcon Industries. All Rights Reserved.</p>
-                <p>Designed for Presence.</p>
+            <div class="pt-12 text-[10px] uppercase tracking-widest text-white/20 flex flex-col md:flex-row justify-between gap-4">
+                <p>&copy; 2026 Pavcon Industries. The Only Solution.</p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition">Instagram</a>
+                    <a href="#" class="hover:text-white transition">WhatsApp</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/263772403722" class="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-    </a>
-
     <script>
-        // Navbar Scrolled State
+        // Navbar Animation Logic
         const navbar = document.getElementById('navbar');
         const logoTop = document.getElementById('logo-text-top');
         const logoBottom = document.getElementById('logo-text-bottom');
         const navLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('bg-white', 'shadow-sm', 'py-4');
-                navbar.classList.remove('py-6');
-                logoTop.classList.replace('text-white', 'text-egyptian');
+            if (window.scrollY > 80) {
+                navbar.classList.add('bg-stone', 'py-4', 'shadow-xl');
+                navbar.classList.remove('py-8');
+                logoTop.classList.replace('text-white', 'text-onyx');
                 logoBottom.classList.replace('text-white', 'text-chilli');
-                navLinks.forEach(link => link.classList.replace('text-white/80', 'text-onyx'));
+                navLinks.forEach(link => link.classList.replace('text-white/70', 'text-onyx/70'));
             } else {
-                navbar.classList.remove('bg-white', 'shadow-sm', 'py-4');
-                navbar.classList.add('py-6');
-                logoTop.classList.replace('text-egyptian', 'text-white');
+                navbar.classList.remove('bg-stone', 'py-4', 'shadow-xl');
+                navbar.classList.add('py-8');
+                logoTop.classList.replace('text-onyx', 'text-white');
                 logoBottom.classList.replace('text-chilli', 'text-white');
-                navLinks.forEach(link => link.classList.replace('text-onyx', 'text-white/80'));
+                navLinks.forEach(link => link.classList.replace('text-onyx/70', 'text-white/70'));
             }
         });
 
-        // Simple reveal animation
+        // Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
