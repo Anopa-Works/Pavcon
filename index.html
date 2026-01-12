@@ -41,6 +41,7 @@
         .section-header { margin-bottom: 80px; }
         .section-subtitle { color: var(--accent); letter-spacing: 4px; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block; }
         .section-title { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
+        .section-desc { max-width: 600px; margin-top: 20px; font-size: 1.1rem; line-height: 1.6; opacity: 0.8; }
 
         /* --- 3. PRE-LOADER --- */
         #loader {
@@ -77,16 +78,15 @@
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* --- 5. HERO SECTION (Refactored for Driveway Image) --- */
+        /* --- 5. HERO SECTION --- */
         .hero {
             height: 100vh; position: relative; overflow: hidden;
             display: flex; align-items: center; background: var(--primary-dark);
         }
-        /* Parallax Background */
         .hero-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 110%; 
             object-fit: cover; opacity: 0.7; 
-            transform: translateZ(0); /* Hardware accel */
+            transform: translateZ(0); 
         }
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -135,7 +135,6 @@
             position: relative; height: 450px; overflow: hidden; cursor: pointer;
             background: var(--primary-dark);
         }
-        /* Grid Spans */
         .item-lg { grid-column: span 8; }
         .item-sm { grid-column: span 4; }
 
@@ -161,8 +160,55 @@
         .stat-box h2 { font-size: 3.5rem; color: var(--accent); margin-bottom: 10px; }
         .stat-box p { color: var(--white); letter-spacing: 2px; font-size: 0.8rem; opacity: 0.6; }
 
-        /* --- 9. CONTACT FORM --- */
-        .contact-section { padding: 120px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;}
+        /* --- 9. NEW SECTION: ABOUT US --- */
+        .about-section { padding: 120px 5%; background: var(--white); display: flex; align-items: center; gap: 60px; overflow: hidden; }
+        .about-content { flex: 1; }
+        .about-image { flex: 1; height: 600px; position: relative; }
+        .about-img-file { width: 100%; height: 100%; object-fit: cover; }
+        .about-badge {
+            position: absolute; bottom: -30px; left: -30px; background: var(--primary);
+            color: var(--white); padding: 40px; width: 200px; text-align: center;
+        }
+
+        /* --- 10. NEW SECTION: PROCESS --- */
+        .process-section { padding: 120px 5%; background: var(--bg); }
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 60px; }
+        .process-card {
+            background: var(--white); padding: 40px; border-left: 3px solid var(--accent);
+            transition: 0.3s;
+        }
+        .process-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .process-num { font-family: 'Syncopate'; font-size: 3rem; color: rgba(5, 51, 74, 0.1); margin-bottom: 20px; }
+        .process-title { font-size: 1.2rem; margin-bottom: 15px; font-weight: 700; }
+
+        /* --- 11. NEW SECTION: PORTFOLIO GRID --- */
+        .portfolio-section { padding: 0 0 120px 0; background: var(--bg); }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); height: 600px;
+        }
+        .gallery-item { position: relative; overflow: hidden; height: 100%; border: 1px solid var(--bg); }
+        .gallery-item img { 
+            width: 100%; height: 100%; object-fit: cover; transition: 0.5s; 
+            filter: grayscale(20%);
+        }
+        .gallery-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5,51,74,0.8); display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s; flex-direction: column; text-align: center; color: var(--white);
+        }
+        .gallery-item:hover img { transform: scale(1.1); filter: grayscale(0%); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* --- 12. NEW SECTION: TESTIMONIALS --- */
+        .testimonials { padding: 120px 5%; background: var(--primary-dark); color: var(--white); }
+        .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .test-card {
+            background: rgba(255,255,255,0.05); padding: 40px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .stars { color: var(--accent); margin-bottom: 20px; }
+        
+        /* --- 13. CONTACT FORM --- */
+        .contact-section { padding: 120px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; background: var(--bg);}
         .contact-info p { margin-bottom: 10px; font-size: 1.1rem; }
         
         .form-box {
@@ -188,7 +234,7 @@
             top: -10px; font-size: 0.75rem; color: var(--accent); opacity: 1; font-weight: 700; 
         }
 
-        /* --- 10. FOOTER & UTILS --- */
+        /* --- 14. FOOTER & UTILS --- */
         footer { background: var(--primary-dark); padding: 80px 5% 30px; color: var(--white); }
         .footer-grid { 
             display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; 
@@ -213,11 +259,14 @@
         /* Responsive */
         @media (max-width: 900px) {
             .item-lg, .item-sm { grid-column: span 12; }
-            .nav-links { display: none; } /* Add mobile menu trigger here for full prod */
+            .nav-links { display: none; }
             .contact-section { grid-template-columns: 1fr; padding: 80px 5%; }
+            .about-section { flex-direction: column; }
+            .about-image { width: 100%; height: 400px; }
             .footer-grid { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
             .form-box { padding: 30px; }
+            .gallery-grid, .test-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -231,9 +280,9 @@
     <nav id="navbar">
         <a href="#" class="logo">PAVCON<span>.</span></a>
         <div class="nav-links">
-            <a href="#services" class="nav-link">Expertise</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#services" class="nav-link">Services</a>
             <a href="#projects" class="nav-link">Portfolio</a>
-            <a href="#about" class="nav-link">Philosophy</a>
             <a href="#contact" class="cta-btn" style="padding: 12px 30px;">Estimate</a>
         </div>
     </nav>
@@ -275,6 +324,28 @@
         </div>
     </section>
 
+    <section id="about" class="about-section">
+        <div class="about-image" data-aos="fade-right">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2070" class="about-img-file" alt="Pavcon Construction Site">
+            <div class="about-badge">
+                <h4 style="font-size: 2rem;">100%</h4>
+                <p>ZIMBABWEAN OWNED</p>
+            </div>
+        </div>
+        <div class="about-content" data-aos="fade-left">
+            <span class="section-subtitle">WHO WE ARE</span>
+            <h2 class="section-title">BUILT ON <span style="color: var(--accent);">TRUST.</span></h2>
+            <p class="section-desc">
+                Pavcon Industries is not just a construction company; we are Zimbabwe's leader in vertical integration. We don't just lay the bricks; we manufacture them. By controlling the supply chain from the factory floor to your driveway, we ensure a level of quality control that competitors simply cannot match.
+            </p>
+            <p class="section-desc">
+                Founded in Harare with a vision to modernize the cityscape, we bring international construction standards to local residential and industrial projects.
+            </p>
+            <br>
+            <a href="#contact" class="cta-btn" style="background: var(--primary);">Meet The Team</a>
+        </div>
+    </section>
+
     <section id="services" class="services">
         <div class="section-header" data-aos="fade-up">
             <span class="section-subtitle">OUR CAPABILITIES</span>
@@ -312,6 +383,110 @@
                     <h3>MANUFACTURING</h3>
                     <p>Proprietary brick and kerbstone production.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="section-header" style="text-align: center;" data-aos="fade-up">
+            <span class="section-subtitle">HOW WE WORK</span>
+            <h2 class="section-title">THE PAVCON STANDARD</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="process-num">01</div>
+                <div class="process-title">Consultation</div>
+                <p>We visit your site in Harare to assess gradient, soil quality, and drainage requirements.</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="process-num">02</div>
+                <div class="process-title">Design & Material</div>
+                <p>Select from our catalogue of premium pavers. We manufacture the materials specifically for your load-bearing needs.</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="process-num">03</div>
+                <div class="process-title">Installation</div>
+                <p>Our expert team levels the ground and installs the paving with precision alignment.</p>
+            </div>
+            <div class="process-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="process-num">04</div>
+                <div class="process-title">Handover</div>
+                <p>A final inspection and cleaning before we hand over your transformed space.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="portfolio-section">
+        <div style="padding: 0 5% 40px; display: flex; justify-content: space-between; align-items: end;">
+            <h2 class="section-title" data-aos="fade-right">RECENT <br>PROJECTS</h2>
+            <a href="#contact" style="color: var(--primary); font-weight: 700;">VIEW ALL WORK &rarr;</a>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>BORROWDALE BROOKE</h3>
+                    <p>Residential Driveway</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>GLEN LORNE</h3>
+                    <p>Retaining Wall & Paving</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>MT PLEASANT</h3>
+                    <p>Poolside Renovation</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>AVONDALE</h3>
+                    <p>Commercial Parking</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>CHISIPITE</h3>
+                    <p>Durawall Construction</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80">
+                <div class="gallery-overlay">
+                    <h3>TYNWALD</h3>
+                    <p>Industrial Complex</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="section-header" style="text-align: center;">
+            <span class="section-subtitle">CLIENT VOICES</span>
+            <h2 class="section-title" style="color: var(--white);">TRUSTED BY HARARE</h2>
+        </div>
+        <div class="test-grid">
+            <div class="test-card" data-aos="fade-up">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; opacity: 0.8; line-height: 1.6;">"Pavcon transformed our entrance completely. The quality of the pavers is visibly superior to what we saw elsewhere."</p>
+                <h4 style="margin-top: 20px; font-size: 0.9rem;">- Sarah M., Highlands</h4>
+            </div>
+            <div class="test-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; opacity: 0.8; line-height: 1.6;">"Professional from start to finish. They adhered to the timeline and left the site spotless."</p>
+                <h4 style="margin-top: 20px; font-size: 0.9rem;">- T. Chikowore, Westgate</h4>
+            </div>
+            <div class="test-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p style="font-style: italic; opacity: 0.8; line-height: 1.6;">"The durawall they built is solid and looks modern. Highly recommended for security upgrades."</p>
+                <h4 style="margin-top: 20px; font-size: 0.9rem;">- Eng. D. Moyo, Msasa</h4>
             </div>
         </div>
     </section>
