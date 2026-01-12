@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pavcon Industries | Master Builders & Paving Specialists</title>
+    <title>Pavcon Industries | Premium Paving & Construction</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
         :root {
-            --bg: #f0eee9; /* Cloud Dancer */
-            --primary: #05334A; /* Egyptian Blue */
-            --accent: #B40023; /* Chilli Red */
+            /* Palette: Cloud Dancer, Egyptian Blue, Chilli Red */
+            --bg: #f4f4f0; 
+            --primary: #05334A; 
+            --primary-dark: #021a26;
+            --accent: #B40023; 
             --white: #ffffff;
-            --black: #021a26;
-            --glass: rgba(255, 255, 255, 0.1);
+            --grey-light: #e0e0e0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+
         body { 
             font-family: 'Outfit', sans-serif; 
             background: var(--bg); 
@@ -29,275 +35,414 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- PRE-LOADER --- */
-        #loader {
-            position: fixed; height: 100vh; width: 100%; background: var(--primary);
-            z-index: 9999; display: flex; align-items: center; justify-content: center;
-            color: var(--white); font-family: 'Syncopate'; transition: 1s ease;
-        }
+        /* --- 2. TYPOGRAPHY --- */
+        h1, h2, h3, h4, .logo { font-family: 'Syncopate', sans-serif; text-transform: uppercase; }
+        
+        .section-header { margin-bottom: 80px; }
+        .section-subtitle { color: var(--accent); letter-spacing: 4px; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: block; }
+        .section-title { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
 
-        /* --- NAVIGATION --- */
+        /* --- 3. PRE-LOADER --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+            background: var(--primary); z-index: 9999; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: var(--white); transition: transform 0.8s ease-in-out;
+        }
+        .loader-text { font-family: 'Syncopate'; font-size: 1.5rem; letter-spacing: 5px; animation: pulse 2s infinite; }
+        .loader-bar { width: 0%; height: 2px; background: var(--accent); margin-top: 20px; transition: 0.5s; }
+
+        /* --- 4. NAVIGATION --- */
         nav {
             position: fixed; width: 100%; padding: 30px 5%; z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s ease;
         }
         nav.scrolled {
             padding: 15px 5%; background: rgba(5, 51, 74, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .logo { 
-            font-family: 'Syncopate'; font-weight: 700; color: var(--white);
-            font-size: 1.4rem; letter-spacing: -1px;
-        }
+        .logo { font-weight: 700; color: var(--white); font-size: 1.4rem; letter-spacing: -1px; text-decoration: none; }
         .logo span { color: var(--accent); }
-        .nav-links a {
-            color: var(--white); text-decoration: none; margin-left: 40px;
-            font-weight: 400; font-size: 0.85rem; letter-spacing: 2px;
-            text-transform: uppercase; transition: 0.3s;
+        
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link {
+            color: var(--white); text-decoration: none; font-size: 0.8rem; 
+            letter-spacing: 2px; text-transform: uppercase; position: relative;
+            padding-bottom: 5px;
         }
-        .nav-links a:hover { color: var(--accent); }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0%; 
+            height: 1px; background: var(--accent); transition: 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
 
-        /* --- HERO SECTION --- */
+        /* --- 5. HERO SECTION (Refactored for Driveway Image) --- */
         .hero {
             height: 100vh; position: relative; overflow: hidden;
-            display: flex; align-items: center; background: var(--black);
+            display: flex; align-items: center; background: var(--primary-dark);
         }
-        .hero-video-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(5,51,74,0.9) 0%, rgba(5,51,74,0.4) 100%);
-            z-index: 1;
-        }
+        /* Parallax Background */
         .hero-img {
-            position: absolute; width: 100%; height: 100%; 
-            object-fit: cover; opacity: 0.6; filter: grayscale(40%) contrast(110%);
+            position: absolute; top: 0; left: 0; width: 100%; height: 110%; 
+            object-fit: cover; opacity: 0.7; 
+            transform: translateZ(0); /* Hardware accel */
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(2,26,38,0.95) 0%, rgba(5,51,74,0.3) 100%);
+            z-index: 2;
         }
         .hero-content {
-            position: relative; z-index: 2; width: 85%; margin: 0 auto;
+            position: relative; z-index: 3; width: 85%; margin: 0 auto; padding-top: 60px;
         }
-        .hero-content h1 {
-            font-family: 'Syncopate'; font-size: clamp(2rem, 6vw, 5rem);
-            color: var(--white); line-height: 1; margin-bottom: 20px;
+        .hero-title {
+            font-size: clamp(2.5rem, 7vw, 6rem); color: var(--white); 
+            line-height: 0.95; margin-bottom: 30px; letter-spacing: -2px;
         }
-        .hero-content p {
-            color: var(--white); font-weight: 300; max-width: 500px;
-            font-size: 1.1rem; margin-bottom: 40px; border-left: 3px solid var(--accent);
-            padding-left: 20px; opacity: 0.9;
+        .hero-desc {
+            color: var(--white); font-weight: 300; max-width: 550px;
+            font-size: 1.15rem; margin-bottom: 50px; 
+            border-left: 3px solid var(--accent); padding-left: 25px; opacity: 0.9;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-down {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            z-index: 3; color: var(--white); opacity: 0.7; animation: bounce 2s infinite;
         }
 
-        /* --- PREMIUM BUTTONS --- */
+        /* --- 6. COMPONENTS (Buttons & Inputs) --- */
         .cta-btn {
-            position: relative; display: inline-block; padding: 18px 45px;
+            display: inline-block; padding: 18px 45px;
             background: var(--accent); color: var(--white); font-weight: 700;
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;
-            overflow: hidden; transition: 0.4s; z-index: 1;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px;
+            border: none; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden;
+            text-decoration: none;
         }
-        .cta-btn::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%;
-            height: 100%; background: var(--white); transition: 0.4s; z-index: -1;
+        .cta-btn:hover { background: var(--white); color: var(--accent); }
+        .cta-btn-outline {
+            background: transparent; border: 1px solid rgba(255,255,255,0.3); margin-left: 20px;
         }
-        .cta-btn:hover { color: var(--accent); }
-        .cta-btn:hover::before { left: 0; }
+        .cta-btn-outline:hover { background: var(--white); color: var(--primary); }
 
-        /* --- SERVICES: THE "BENTO" GRID --- */
-        .services { padding: 150px 5%; background: var(--bg); }
+        /* --- 7. SERVICES (Bento Grid) --- */
+        .services { padding: 120px 5%; background: var(--bg); }
         .grid-layout {
             display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;
         }
         .service-item {
-            position: relative; height: 400px; overflow: hidden;
-            background: var(--primary); border-radius: 2px;
+            position: relative; height: 450px; overflow: hidden; cursor: pointer;
+            background: var(--primary-dark);
         }
+        /* Grid Spans */
         .item-lg { grid-column: span 8; }
         .item-sm { grid-column: span 4; }
+
         .service-img {
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.5; transition: 0.8s;
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.6; 
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s;
         }
         .service-item:hover .service-img { transform: scale(1.1); opacity: 0.3; }
-        .service-text {
-            position: absolute; bottom: 40px; left: 40px; color: var(--white);
+        
+        .service-info {
+            position: absolute; bottom: 0; left: 0; padding: 40px; width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         }
-        .service-text h3 { font-family: 'Syncopate'; font-size: 1.5rem; margin-bottom: 10px; }
+        .service-info h3 { color: var(--white); font-size: 1.4rem; margin-bottom: 8px; }
+        .service-info p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
 
-        /* --- STATS SECTION --- */
-        .stats { background: var(--primary); padding: 100px 5%; display: flex; justify-content: space-around; color: var(--white); text-align: center;}
-        .stat-box h2 { font-size: 3rem; font-family: 'Syncopate'; color: var(--accent); }
+        /* --- 8. STATS --- */
+        .stats { 
+            background: var(--primary); padding: 100px 5%; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-box h2 { font-size: 3.5rem; color: var(--accent); margin-bottom: 10px; }
+        .stat-box p { color: var(--white); letter-spacing: 2px; font-size: 0.8rem; opacity: 0.6; }
 
-        /* --- PREMIUM FORM --- */
-        .contact-section { padding: 100px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;}
-        .input-group { position: relative; margin-bottom: 30px; }
-        .input-group input, .input-group textarea {
+        /* --- 9. CONTACT FORM --- */
+        .contact-section { padding: 120px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;}
+        .contact-info p { margin-bottom: 10px; font-size: 1.1rem; }
+        
+        .form-box {
+            background: var(--white); padding: 60px; 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08); position: relative;
+        }
+        .form-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--accent);
+        }
+        .input-group { position: relative; margin-bottom: 35px; }
+        .input-field {
             width: 100%; padding: 15px 0; background: transparent; border: none;
-            border-bottom: 1px solid var(--primary); outline: none; font-size: 1.1rem;
+            border-bottom: 1px solid #ccc; outline: none; font-size: 1rem;
+            font-family: 'Outfit', sans-serif; color: var(--primary); transition: 0.3s;
         }
-        .input-group label { position: absolute; left: 0; top: 15px; transition: 0.3s; pointer-events: none; opacity: 0.5; }
-        input:focus + label, input:valid + label, textarea:focus + label { top: -15px; font-size: 0.8rem; color: var(--accent); opacity: 1; }
+        .input-field:focus { border-bottom-color: var(--accent); }
+        .input-label {
+            position: absolute; left: 0; top: 15px; transition: 0.3s; 
+            pointer-events: none; opacity: 0.5; font-size: 1rem;
+        }
+        .input-field:focus + .input-label, 
+        .input-field:valid + .input-label { 
+            top: -10px; font-size: 0.75rem; color: var(--accent); opacity: 1; font-weight: 700; 
+        }
 
-        /* --- FLOATING ELEMENTS --- */
-        .wa-float {
-            position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px;
-            background: #25d366; color: white; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center; font-size: 30px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 1000;
+        /* --- 10. FOOTER & UTILS --- */
+        footer { background: var(--primary-dark); padding: 80px 5% 30px; color: var(--white); }
+        .footer-grid { 
+            display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; margin-bottom: 30px; 
         }
+        .footer-link { color: rgba(255,255,255,0.5); text-decoration: none; display: block; margin-bottom: 15px; transition: 0.3s; }
+        .footer-link:hover { color: var(--accent); }
+
+        .wa-float {
+            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            background: #25d366; color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 28px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 1000;
+            transition: 0.3s; text-decoration: none;
+        }
+        .wa-float:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6); }
+
+        /* Keyframes */
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} 60% {transform: translateX(-50%) translateY(-5px);} }
 
         /* Responsive */
         @media (max-width: 900px) {
             .item-lg, .item-sm { grid-column: span 12; }
-            .nav-links { display: none; }
-            .contact-section { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Add mobile menu trigger here for full prod */
+            .contact-section { grid-template-columns: 1fr; padding: 80px 5%; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.8rem; }
+            .form-box { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="loader">PAVCON INDUSTRIES_</div>
+    <div id="loader">
+        <div class="loader-text">PAVCON INDUSTRIES</div>
+        <div class="loader-bar" id="loaderBar"></div>
+    </div>
 
     <nav id="navbar">
         <a href="#" class="logo">PAVCON<span>.</span></a>
         <div class="nav-links">
-            <a href="#services">Architecture</a>
-            <a href="#projects">Portfolios</a>
-            <a href="#about">Philosophy</a>
-            <a href="#contact" class="cta-btn" style="padding: 10px 25px;">Estimate</a>
+            <a href="#services" class="nav-link">Expertise</a>
+            <a href="#projects" class="nav-link">Portfolio</a>
+            <a href="#about" class="nav-link">Philosophy</a>
+            <a href="#contact" class="cta-btn" style="padding: 12px 30px;">Estimate</a>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-video-overlay"></div>
-        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2070" class="hero-img" alt="Luxury Paving">
+        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?q=80&w=2070&auto=format&fit=crop" class="hero-img" id="parallaxImg" alt="Luxury Paved Driveway Zimbabwe">
+        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
-            <h1 data-aos="fade-up" data-aos-delay="400">STRUCTURAL <br><span style="color: var(--accent)">EXCELLENCE.</span></h1>
-            <p data-aos="fade-up" data-aos-delay="600">Zimbabwe's premier industrial partner in modern paving, building construction, and high-security durawalls. We manufacture the foundations of Harare's future.</p>
-            <div data-aos="fade-up" data-aos-delay="800">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">
+                DEFINE YOUR <br><span style="color: var(--accent)">ENTRANCE.</span>
+            </h1>
+            <p class="hero-desc" data-aos="fade-up" data-aos-delay="200">
+                Zimbabwe's premier industrial partner in precision paving, construction, and high-security structural solutions. From Tynwald to Borrowdale, we build the foundations of luxury.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="400">
                 <a href="#contact" class="cta-btn">Start Project</a>
+                <a href="#services" class="cta-btn cta-btn-outline">View Catalogue</a>
             </div>
+        </div>
+        
+        <div class="scroll-down">
+            <i class="fa-solid fa-arrow-down"></i>
         </div>
     </section>
 
     <section class="stats">
-        <div class="stat-box" data-aos="zoom-in"><h2>15+</h2><p>YEARS IN ZIMBABWE</p></div>
-        <div class="stat-box" data-aos="zoom-in" data-aos-delay="200"><h2>500+</h2><p>PROJECTS COMPLETED</p></div>
-        <div class="stat-box" data-aos="zoom-in" data-aos-delay="400"><h2>100%</h2><p>ZIMBABWEAN OWNED</p></div>
+        <div class="stat-box" data-aos="zoom-in">
+            <h2>15+</h2><p>YEARS IN HARARE</p>
+        </div>
+        <div class="stat-box" data-aos="zoom-in" data-aos-delay="100">
+            <h2>500+</h2><p>DRIVEWAYS PAVED</p>
+        </div>
+        <div class="stat-box" data-aos="zoom-in" data-aos-delay="200">
+            <h2>100%</h2><p>LOCAL MATERIALS</p>
+        </div>
+        <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+            <h2>A+</h2><p>CIFOZ RATED</p>
+        </div>
     </section>
 
     <section id="services" class="services">
-        <div style="margin-bottom: 80px;">
-            <h4 style="color: var(--accent); letter-spacing: 5px; font-family: 'Syncopate';">OUR CAPABILITIES</h4>
-            <h2 style="font-size: 3rem; font-family: 'Syncopate';">INTEGRATED CONSTRUCTION</h2>
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-subtitle">OUR CAPABILITIES</span>
+            <h2 class="section-title">INTEGRATED<br>CONSTRUCTION</h2>
         </div>
 
         <div class="grid-layout">
-            <div class="service-item item-lg" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=2070" class="service-img">
-                <div class="service-text">
-                    <h3>PAVING & LANDSCAPES</h3>
-                    <p>Bespoke outdoor surfaces for high-end residential and commercial zones.</p>
+            <div class="service-item item-lg" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1623164003592-0690d790757d?auto=format&fit=crop&q=80&w=2070" class="service-img" alt="Paving Blocks">
+                <div class="service-info">
+                    <h3>PREMIUM PAVING</h3>
+                    <p>Interlocking pavers, cobblestone, and industrial grade surfacing.</p>
                 </div>
             </div>
-            <div class="service-item item-sm" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1589939705384-5185138a193d?auto=format&fit=crop&q=80&w=2070" class="service-img">
-                <div class="service-text">
+            
+            <div class="service-item item-sm" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1589939705384-5185138a193d?auto=format&fit=crop&q=80&w=2070" class="service-img" alt="Concrete Wall">
+                <div class="service-info">
                     <h3>DURAWALLS</h3>
-                    <p>Security meets aesthetics.</p>
+                    <p>Pre-cast security walling systems.</p>
                 </div>
             </div>
-            <div class="service-item item-sm" data-aos="fade-right">
-                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2070" class="service-img">
-                <div class="service-text">
-                    <h3>PLUMBING</h3>
-                    <p>Industrial scale systems.</p>
+            
+            <div class="service-item item-sm" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" class="service-img" alt="Modern Architecture">
+                <div class="service-info">
+                    <h3>ARCHITECTURE</h3>
+                    <p>Full-scale residential planning.</p>
                 </div>
             </div>
-            <div class="service-item item-lg" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2070" class="service-img">
-                <div class="service-text">
+            
+            <div class="service-item item-lg" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=2070" class="service-img" alt="Factory Manufacturing">
+                <div class="service-info">
                     <h3>MANUFACTURING</h3>
-                    <p>Pavcon proprietary bricks, kerbstones, and high-PSI pavers.</p>
+                    <p>Proprietary brick and kerbstone production.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
-        <div data-aos="fade-right">
-            <h2 style="font-family: 'Syncopate'; font-size: 2.5rem;">READY TO <br><span style="color: var(--accent)">BUILD?</span></h2>
-            <p style="margin-top: 30px; line-height: 2;">14744 Nkwisi Gardens, Tynwald, Harare.<br>Member of CIFOZ - Ensuring international standards on local ground.</p>
-            <div style="margin-top: 40px;">
-                <h4 style="color: var(--accent);">Direct Line</h4>
-                <p style="font-size: 1.5rem; font-weight: 700;">+263 77 240 3722</p>
+        <div class="contact-info" data-aos="fade-right">
+            <span class="section-subtitle">GET IN TOUCH</span>
+            <h2 class="section-title" style="margin-bottom: 30px;">READY TO <br><span style="color: var(--accent)">BUILD?</span></h2>
+            <p><strong>Headquarters:</strong><br>14744 Nkwisi Gardens, Tynwald, Harare.</p>
+            <p><strong>Member of CIFOZ:</strong><br>Ensuring international standards on local ground.</p>
+            
+            <div style="margin-top: 40px; padding-top: 40px; border-top: 1px solid #ccc;">
+                <h4 style="color: var(--accent); margin-bottom: 10px;">Direct Line</h4>
+                <p style="font-size: 1.8rem; font-family: 'Syncopate'; font-weight: 700;">+263 77 240 3722</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Available Mon-Sat, 08:00 - 17:00</p>
             </div>
         </div>
 
-        <div style="background: var(--white); padding: 50px; border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.05);" data-aos="fade-left">
+        <div class="form-box" data-aos="fade-left">
             <form id="premiumForm">
                 <div class="input-group">
-                    <input type="text" id="name" required>
-                    <label>Your Name</label>
+                    <input type="text" id="name" class="input-field" required>
+                    <label class="input-label">Full Name</label>
                 </div>
                 <div class="input-group">
-                    <input type="email" id="email" required>
-                    <label>Email Address</label>
+                    <input type="email" id="email" class="input-field" required>
+                    <label class="input-label">Email Address</label>
                 </div>
                 <div class="input-group">
-                    <select id="service" style="width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid var(--primary); outline: none;">
-                        <option value="Paving">Paving Project</option>
-                        <option value="Building">Building Construction</option>
+                    <select id="service" class="input-field" style="color: #333;">
+                        <option value="" disabled selected>Select Service Interest</option>
+                        <option value="Driveway Paving">Driveway Paving</option>
+                        <option value="Commercial Paving">Commercial Paving</option>
+                        <option value="Building Construction">Building Construction</option>
                         <option value="Durawalls">Durawall Security</option>
-                        <option value="Bricks">Brick/Stone Supply</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <textarea id="message" required></textarea>
-                    <label>Project Scope</label>
+                    <textarea id="message" class="input-field" rows="1" required></textarea>
+                    <label class="input-label">Project Details (Location, Size)</label>
                 </div>
-                <button type="button" onclick="sendToWhatsApp()" class="cta-btn" style="width: 100%; border: none;">Request Consultation</button>
+                <button type="button" onclick="sendToWhatsApp()" class="cta-btn" style="width: 100%; margin-top: 10px;">
+                    Request Consultation
+                </button>
             </form>
         </div>
     </section>
 
-    <footer style="background: var(--primary); padding: 80px 5% 40px; color: var(--white);">
-        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; flex-wrap: wrap; gap: 40px;">
-            <div style="max-width: 400px;">
+    <footer>
+        <div class="footer-grid">
+            <div>
                 <h3 class="logo">PAVCON<span>.</span></h3>
-                <p style="opacity: 0.6; margin-top: 20px;">We manufacture excellence. From the raw brick to the finished masterpiece, Pavcon Industries is Zimbabwe's vertical integration leader in construction.</p>
+                <p style="opacity: 0.6; margin-top: 20px; line-height: 1.6; max-width: 350px;">
+                    We manufacture excellence. From the raw brick to the finished masterpiece, Pavcon Industries is Zimbabwe's vertical integration leader in construction.
+                </p>
             </div>
             <div>
-                <h4 style="margin-bottom: 20px; font-family: 'Syncopate'; font-size: 0.8rem;">Links</h4>
-                <p><a href="#" style="color: var(--white); opacity: 0.6; text-decoration: none;">Privacy Policy</a></p>
-                <p><a href="#" style="color: var(--white); opacity: 0.6; text-decoration: none;">CIFOZ Verification</a></p>
+                <h4 style="margin-bottom: 25px; font-size: 0.9rem;">Quick Links</h4>
+                <a href="#services" class="footer-link">Services</a>
+                <a href="#projects" class="footer-link">Past Projects</a>
+                <a href="#contact" class="footer-link">Get a Quote</a>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 25px; font-size: 0.9rem;">Legal</h4>
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link">CIFOZ Certificate</a>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">&copy; 2026 PAVCON INDUSTRIES | DESIGNED FOR EXCELLENCE</p>
+        <div style="text-align: center; opacity: 0.4; font-size: 0.75rem; letter-spacing: 1px;">
+            &copy; 2026 PAVCON INDUSTRIES ZIMBABWE | DESIGNED FOR EXCELLENCE
+        </div>
     </footer>
 
-    <a href="https://wa.me/263772403722" class="wa-float" target="_blank">
+    <a href="https://wa.me/263772403722" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Loader
-        window.onload = () => {
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
-        };
+        // --- 1. PRELOADER LOGIC ---
+        window.addEventListener('load', () => {
+            const loaderBar = document.getElementById('loaderBar');
+            const loader = document.getElementById('loader');
+            
+            // Fill bar
+            loaderBar.style.width = '100%';
+            
+            setTimeout(() => {
+                // Slide up curtain effect
+                loader.style.transform = 'translateY(-100%)';
+            }, 800);
+        });
 
-        // Scroll Effects
-        window.onscroll = () => {
+        // --- 2. SCROLL EFFECTS ---
+        window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if(window.scrollY > 100) nav.classList.add('scrolled');
+            const heroImg = document.getElementById('parallaxImg');
+            let scrollPosition = window.pageYOffset;
+
+            // Nav backdrop
+            if(scrollPosition > 50) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
-        };
 
-        AOS.init({ duration: 1000, once: true });
+            // Parallax Hero
+            if(scrollPosition < window.innerHeight) {
+                heroImg.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+            }
+        });
 
+        // --- 3. INIT AOS ANIMATIONS ---
+        AOS.init({
+            duration: 800,
+            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+            once: true,
+            offset: 50
+        });
+
+        // --- 4. WHATSAPP INTEGRATION ---
         function sendToWhatsApp() {
             const name = document.getElementById('name').value;
             const service = document.getElementById('service').value;
             const msg = document.getElementById('message').value;
-            const text = `*PAVCON PREMIUM INQUIRY*%0A*Client:* ${name}%0A*Interest:* ${service}%0A*Project:* ${msg}`;
+            
+            if(!name || !service) {
+                alert("Please fill in your name and select a service.");
+                return;
+            }
+
+            const text = `*PAVCON PREMIUM INQUIRY*%0A------------------%0A*Client:* ${name}%0A*Interest:* ${service}%0A*Details:* ${msg}%0A------------------%0APlease contact me regarding a quote.`;
+            
             window.open(`https://wa.me/263772403722?text=${text}`, '_blank');
         }
     </script>
