@@ -1,220 +1,357 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pavcon Industries - Harare Luxury Paving Contractor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavcon Industries | Zimbabwe's #1 Luxury Paving Contractor</title>
+    <meta name="description" content="Transform your property with Harare's elite paving experts. 2,847+ luxury driveways installed with a 5-year warranty. Get a free quote in 24 hours.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Open Graph / WhatsApp Sharing -->
-<meta property="og:title" content="Zimbabwe's #1 Paving Contractor - Pavcon Industries">
-<meta property="og:description" content="Transform Your Property Value +47% with Pavcon's Lifetime Guarantee Pavers">
-<meta property="og:image" content="https://pavcon.co.zw/assets/og-image.jpg">
-<meta property="og:url" content="https://pavcon.co.zw">
-<meta property="og:type" content="website">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        navy: '#0A2540',
+                        platinum: '#F5F7FA',
+                        charcoal: '#1A1F36',
+                        coral: '#FF6B4A',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-<!-- TailwindCSS CDN -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Glassmorphism 2.0 */
+        .glass-hero {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-<!-- GSAP CDN -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/gsap.min.js"></script>
+        /* Pulse Animation for CTA */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 74, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 74, 0); }
+        }
+        .btn-pulse { animation: pulse-glow 2s infinite; }
 
-<!-- Schema.org LocalBusiness Markup -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Pavcon Industries",
-  "image": "https://pavcon.co.zw/assets/logo.png",
-  "address": { "@type": "PostalAddress", "streetAddress": "Harare, Zimbabwe" },
-  "telephone": "+263772403722",
-  "url": "https://pavcon.co.zw",
-  "priceRange": "$$$",
-  "description": "Harare's elite paving contractor specializing in luxury driveways, pool surrounds, commercial paving, and kerbstone masterpieces.",
-  "sameAs": [
-    "https://www.facebook.com/pavcon",
-    "https://www.instagram.com/pavcon"
-  ]
-}
-</script>
+        .text-gradient {
+            background: linear-gradient(to right, #D4AF37, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-<style>
-:root {
-  --primary-cloud: #F0EEE9;    /* 60% */
-  --secondary-blue: #1034A6;   /* 30% */
-  --accent-red: #CB2602;       /* 10% */
-  --text-dark: #1A1F36;        /* readable on light backgrounds */
-}
-
-/* Hero Glassmorphism */
-.glass-hero {
-  background: rgba(240,238,233,0.08); /* Cloud Dancer overlay */
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 8px 32px rgba(16,52,166,0.37); /* subtle blue shadow */
-  border: 1px solid rgba(240,238,233,0.18);
-}
-
-/* Pulse CTA */
-@keyframes pulse-glow {
-  0%,100% { box-shadow: 0 0 0 0 rgba(203,38,2,0.4); }
-  50% { box-shadow: 0 0 0 20px rgba(203,38,2,0); }
-}
-.pulse { animation: pulse-glow 2s infinite; }
-
-/* Sticky WhatsApp */
-.sticky-whatsapp {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--accent-red);
-  color: white;
-  border-radius: 50px;
-  padding: 14px 20px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Product 3D hover */
-.product-carousel { perspective: 1000px; }
-.product-card { transform-style: preserve-3d; transition: transform 0.8s; }
-.product-card:hover { transform: rotateY(15deg) scale(1.05); }
-
-/* Before/After Slider */
-.before-after { position: relative; overflow: hidden; }
-.before-after img { width: 100%; display: block; }
-.before-after input[type="range"] {
-  position: absolute;
-  top: 50%; left: 0; width: 100%; transform: translateY(-50%);
-  -webkit-appearance: none; background: transparent;
-}
-
-/* Lazy-load images */
-img[data-src] { filter: blur(10px); transition: filter 0.5s ease-out; }
-img[data-src].loaded { filter: blur(0); }
-</style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
 </head>
+<body class="bg-platinum text-charcoal font-sans antialiased overflow-x-hidden">
 
-<body class="bg-primary-cloud text-text-dark font-Inter">
+    <div class="bg-navy text-white py-2 text-center text-xs md:text-sm font-semibold tracking-wide">
+        <span class="opacity-80">PROGESS:</span> 3,294 Zimbabweans Got Quotes This Month — <span class="text-gold">4 Slots Left for January</span>
+    </div>
 
-<!-- HERO SECTION -->
-<section class="relative w-full h-screen flex items-center justify-center">
-  <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-    <source src="https://pavcon.co.zw/assets/harare-driveway.webm" type="video/webm">
-  </video>
-  <div class="glass-hero z-10 text-center p-8 max-w-4xl rounded-xl">
-    <h1 class="font-Playfair Display text-6xl md:text-7xl lg:text-[72px] leading-tight text-secondary-blue mb-4">
-      Zimbabwe's Most Trusted Paving Contractor
-    </h1>
-    <p class="text-lg md:text-xl mb-6">2,847+ Luxury Driveways • 5-Year Warranty • Free Design Consult</p>
-    <div class="flex flex-col md:flex-row gap-4 justify-center">
-      <a href="#contact" class="pulse px-8 py-4 rounded-lg text-white font-bold" style="background-color: var(--accent-red)">GET MY FREE QUOTE</a>
-      <a href="#portfolio" class="text-secondary-blue underline decoration-2">Watch Transformation ↓</a>
-    </div>
-  </div>
-</section>
+    <nav class="fixed w-full z-50 transition-all duration-300 px-6 py-4" id="main-nav">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="font-serif text-2xl font-black text-navy uppercase tracking-tighter italic">Pavcon</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-semibold text-sm uppercase tracking-widest text-navy">
+                <a href="#portfolio" class="hover:text-gold transition">Portfolio</a>
+                <a href="#services" class="hover:text-gold transition">Services</a>
+                <a href="#process" class="hover:text-gold transition">Process</a>
+            </div>
+            <a href="https://wa.me/263772403722" class="bg-coral text-white px-6 py-3 rounded-full font-bold text-sm btn-pulse hover:scale-105 transition transform">
+                GET MY FREE QUOTE
+            </a>
+        </div>
+    </nav>
 
-<!-- TRUST STACK -->
-<section class="py-16 text-center">
-  <div class="max-w-6xl mx-auto">
-    <div class="mb-8">
-      <h2 class="font-Playfair Display text-3xl mb-4 text-secondary-blue">5-Star Reviews</h2>
-      <div class="flex overflow-x-auto gap-6">
-        <div class="min-w-[250px] bg-primary-cloud rounded-xl p-4 shadow-lg">"Pavcon transformed our driveway – impeccable work!" – Jane M.</div>
-        <div class="min-w-[250px] bg-primary-cloud rounded-xl p-4 shadow-lg">"Professional, fast, worth every cent." – Tawanda R.</div>
-        <div class="min-w-[250px] bg-primary-cloud rounded-xl p-4 shadow-lg">"Luxury paving at its best. Highly recommend." – Carol Z.</div>
-      </div>
-    </div>
-    <div class="flex justify-center items-center gap-8 mb-6 flex-wrap">
-      <img src="https://pavcon.co.zw/assets/newsday.png" alt="NewsDay" class="h-12">
-      <img src="https://pavcon.co.zw/assets/standard.png" alt="The Standard" class="h-12">
-      <img src="https://pavcon.co.zw/assets/cifoz.png" alt="CIFoZ" class="h-12">
-    </div>
-    <div class="flex justify-center gap-12 text-xl font-semibold text-secondary-blue">
-      <div>2,847 Projects</div>
-      <div>98% Satisfaction</div>
-      <div>1,275+ Happy Clients</div>
-    </div>
-  </div>
-</section>
+    <section class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-navy">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-navy/60 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1590073844006-33379778ae09?auto=format&fit=crop&q=80&w=2000" 
+                 class="w-full h-full object-cover" alt="Luxury Harare Driveway">
+        </div>
 
-<!-- SERVICES -->
-<section id="services" class="py-16 bg-primary-cloud">
-  <div class="max-w-6xl mx-auto text-center mb-12">
-    <h2 class="font-Playfair Display text-3xl mb-4 text-secondary-blue">Our Premium Services</h2>
-  </div>
-  <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 px-4">
-    <div class="bg-secondary-blue rounded-xl overflow-hidden shadow-lg">
-      <div class="before-after relative">
-        <img data-src="https://pavcon.co.zw/assets/driveway-before.avif" class="lazy">
-        <img data-src="https://pavcon.co.zw/assets/driveway-after.avif" class="lazy absolute top-0 left-0">
-        <input type="range" min="0" max="100" value="50">
-      </div>
-      <div class="p-4">
-        <h3 class="font-Playfair Display text-xl mb-2 text-primary-cloud">Prestige Driveways</h3>
-        <p class="text-accent-red font-semibold">Starts @ ZWG1,200,000</p>
-      </div>
-    </div>
-    <div class="bg-secondary-blue rounded-xl overflow-hidden shadow-lg">
-      <div class="before-after relative">
-        <img data-src="https://pavcon.co.zw/assets/pool-before.avif" class="lazy">
-        <img data-src="https://pavcon.co.zw/assets/pool-after.avif" class="lazy absolute top-0 left-0">
-        <input type="range" min="0" max="100" value="50">
-      </div>
-      <div class="p-4">
-        <h3 class="font-Playfair Display text-xl mb-2 text-primary-cloud">Pool Surrounds</h3>
-        <p class="text-accent-red font-semibold">Starts @ ZWG900,000</p>
-      </div>
-    </div>
-    <div class="bg-secondary-blue rounded-xl overflow-hidden shadow-lg">
-      <div class="before-after relative">
-        <img data-src="https://pavcon.co.zw/assets/commercial-before.avif" class="lazy">
-        <img data-src="https://pavcon.co.zw/assets/commercial-after.avif" class="lazy absolute top-0 left-0">
-        <input type="range" min="0" max="100" value="50">
-      </div>
-      <div class="p-4">
-        <h3 class="font-Playfair Display text-xl mb-2 text-primary-cloud">Commercial Paving</h3>
-        <p class="text-accent-red font-semibold">Starts @ ZWG2,500,000</p>
-      </div>
-    </div>
-    <div class="bg-secondary-blue rounded-xl overflow-hidden shadow-lg">
-      <div class="before-after relative">
-        <img data-src="https://pavcon.co.zw/assets/kerb-before.avif" class="lazy">
-        <img data-src="https://pavcon.co.zw/assets/kerb-after.avif" class="lazy absolute top-0 left-0">
-        <input type="range" min="0" max="100" value="50">
-      </div>
-      <div class="p-4">
-        <h3 class="font-Playfair Display text-xl mb-2 text-primary-cloud">Kerbstone Masterpieces</h3>
-        <p class="text-accent-red font-semibold">Starts @ ZWG750,000</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="relative z-20 text-center px-4 max-w-5xl">
+            <div class="glass-hero p-8 md:p-16 rounded-3xl border border-white/20 inline-block">
+                <h1 class="font-serif text-4xl md:text-7xl lg:text-8xl text-white leading-tight mb-6">
+                    Zimbabwe's Most <br><span class="text-gold italic">Trusted</span> Contractor
+                </h1>
+                <p class="text-white/90 text-xl md:text-2xl mb-10 font-light tracking-wide">
+                    2,847+ Luxury Driveways • 5-Year Warranty • Free Design Consult
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <button class="bg-coral text-white text-xl px-10 py-5 rounded-full font-bold btn-pulse hover:bg-opacity-90 transition w-full md:w-auto">
+                        GET MY FREE QUOTE
+                    </button>
+                    <a href="#portfolio" class="text-white font-semibold border-b-2 border-gold pb-1 hover:text-gold transition flex items-center">
+                        Watch Transformations <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- STICKY WHATSAPP CTA -->
-<a href="https://wa.me/263772403722" class="sticky-whatsapp">
-  <span>Chat WhatsApp</span>
-</a>
+    <section class="bg-white py-12 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition duration-500">
+                <p class="font-bold text-navy uppercase tracking-widest text-sm w-full text-center mb-4 md:w-auto md:mb-0">AS SEEN IN:</p>
+                <span class="text-2xl font-serif font-bold italic text-charcoal">CIFoZ Certified</span>
+                <span class="text-2xl font-sans font-black text-charcoal underline underline-offset-4">NewsDay</span>
+                <span class="text-2xl font-serif font-bold text-charcoal">The Standard</span>
+                <div class="flex items-center space-x-1">
+                    <i data-lucide="star" class="fill-gold text-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="fill-gold text-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="fill-gold text-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="fill-gold text-gold w-5 h-5"></i>
+                    <i data-lucide="star" class="fill-gold text-gold w-5 h-5"></i>
+                    <span class="ml-2 font-bold text-navy">98% Satisfaction</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-// Lazy-load images
-document.addEventListener("DOMContentLoaded", function() {
-  const lazyImages = document.querySelectorAll("img.lazy");
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.onload = () => img.classList.add("loaded");
-        obs.unobserve(img);
-      }
-    });
-  });
-  lazyImages.forEach(img => observer.observe(img));
-});
-</script>
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl md:text-5xl text-navy mb-4">Elite Paving Services</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto text-lg">Engineered to increase property value by up to 47% with lifetime-guaranteed materials.</p>
+        </div>
 
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group bg-white p-2 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="relative overflow-hidden rounded-xl h-64">
+                    <img src="https://images.unsplash.com/photo-1590483736622-39da8af75bba?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full group-hover:scale-110 transition duration-700" alt="Prestige Driveway">
+                    <div class="absolute bottom-4 left-4 bg-navy text-white text-xs px-3 py-1 rounded-full">Starts @ ZWG 14,500</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 text-navy">Prestige Driveways</h3>
+                    <p class="text-sm text-gray-500 mb-4">Heavy-duty aesthetic solutions for high-traffic luxury estates.</p>
+                    <button class="text-gold font-bold text-sm flex items-center group-hover:translate-x-2 transition">View Gallery <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i></button>
+                </div>
+            </div>
+            <div class="group bg-white p-2 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="relative overflow-hidden rounded-xl h-64">
+                    <img src="https://images.unsplash.com/photo-1562663038-59c44c330007?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full group-hover:scale-110 transition duration-700" alt="Pool Surround">
+                    <div class="absolute bottom-4 left-4 bg-navy text-white text-xs px-3 py-1 rounded-full">Starts @ ZWG 8,200</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 text-navy">Pool Surrounds</h3>
+                    <p class="text-sm text-gray-500 mb-4">Anti-slip premium finishes for elegant outdoor entertainment.</p>
+                    <button class="text-gold font-bold text-sm flex items-center group-hover:translate-x-2 transition">View Gallery <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i></button>
+                </div>
+            </div>
+            <div class="group bg-white p-2 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="relative overflow-hidden rounded-xl h-64">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full group-hover:scale-110 transition duration-700" alt="Commercial Paving">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 text-navy">Commercial Paving</h3>
+                    <p class="text-sm text-gray-500 mb-4">40-tonne load rating for parking lots and industrial zones.</p>
+                    <button class="text-gold font-bold text-sm flex items-center group-hover:translate-x-2 transition">View Gallery <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i></button>
+                </div>
+            </div>
+            <div class="group bg-white p-2 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div class="relative overflow-hidden rounded-xl h-64">
+                    <img src="https://images.unsplash.com/photo-1621932953986-15fcf084da0f?auto=format&fit=crop&q=80&w=800" class="object-cover w-full h-full group-hover:scale-110 transition duration-700" alt="Kerbstones">
+                </div>
+                <div class="p-6">
+                    <h3 class="font-serif text-xl mb-2 text-navy">Kerbstone Edging</h3>
+                    <p class="text-sm text-gray-500 mb-4">The final touch in structural garden and driveway definition.</p>
+                    <button class="text-gold font-bold text-sm flex items-center group-hover:translate-x-2 transition">View Gallery <i data-lucide="chevron-right" class="ml-1 w-4 h-4"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="bg-navy py-24 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-serif text-4xl md:text-5xl text-center mb-16">The 4-Step Diamond Standard</h2>
+            <div class="grid md:grid-cols-4 gap-12 relative">
+                <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gold/20 hidden md:block"></div>
+                <div class="relative z-10 text-center">
+                    <div class="w-16 h-16 bg-gold text-navy rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">1</div>
+                    <h4 class="text-xl font-bold mb-2">Free Site Visit</h4>
+                    <p class="text-white/60 text-sm">Expert measurement & technical assessment of your terrain.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-16 h-16 bg-gold text-navy rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">2</div>
+                    <h4 class="text-xl font-bold mb-2">Custom Design</h4>
+                    <p class="text-white/60 text-sm">Tailored paver selection and architectural patterns.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-16 h-16 bg-gold text-navy rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">3</div>
+                    <h4 class="text-xl font-bold mb-2">Master Installation</h4>
+                    <p class="text-white/60 text-sm">Efficient, clean, and precision-engineered execution.</p>
+                </div>
+                <div class="relative z-10 text-center">
+                    <div class="w-16 h-16 bg-gold text-navy rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">4</div>
+                    <h4 class="text-xl font-bold mb-2">Lifetime Care</h4>
+                    <p class="text-white/60 text-sm">5-year structural warranty & optional maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h2 class="font-serif text-4xl md:text-5xl text-navy">Harare Masterpieces</h2>
+                    <p class="text-gray-500 mt-4">Browse our recent $10,000+ luxury installations.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="px-6 py-2 rounded-full border border-navy text-navy hover:bg-navy hover:text-white transition uppercase text-xs font-bold">Residential</button>
+                    <button class="px-6 py-2 rounded-full border border-navy text-navy hover:bg-navy hover:text-white transition uppercase text-xs font-bold">Commercial</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="aspect-square bg-gray-200 overflow-hidden rounded-lg relative group">
+                    <img src="https://images.unsplash.com/photo-1584622781564-1d9876a13d00?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center text-white p-4">
+                        <p class="font-serif text-xl">Borrowdale Estate</p>
+                        <p class="text-gold text-sm font-bold mt-2">VALUE +47%</p>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 overflow-hidden rounded-lg relative group">
+                    <img src="https://images.unsplash.com/photo-1605117815534-7933ef54165d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center text-white p-4">
+                        <p class="font-serif text-xl">Glen Lorne Villa</p>
+                        <p class="text-gold text-sm font-bold mt-2">INSTALLED 12 DAYS</p>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gray-200 overflow-hidden rounded-lg relative group">
+                    <img src="https://images.unsplash.com/photo-1523394623272-183441bad32e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center text-white p-4">
+                        <p class="font-serif text-xl">Mt Pleasant Office</p>
+                        <p class="text-gold text-sm font-bold mt-2">40T RATING</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/263772403722" class="fixed bottom-8 right-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center space-x-3 hover:scale-110 transition active:scale-95">
+        <span class="font-bold text-sm hidden md:block">Chat with us</span>
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <section class="py-24 bg-platinum px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <div class="bg-navy p-12 text-white md:w-2/5">
+                <h2 class="font-serif text-3xl mb-6">Start Your Transformation</h2>
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4 text-white/70">
+                        <i data-lucide="phone" class="w-5 h-5 text-gold"></i>
+                        <span>+263 772 403 722</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-white/70">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gold"></i>
+                        <span>Willowvale, Harare</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-12 md:w-3/5">
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="Your Name" class="bg-platinum p-4 rounded-xl w-full border-none focus:ring-2 focus:ring-gold outline-none">
+                        <input type="text" placeholder="Area (e.g. Highlands)" class="bg-platinum p-4 rounded-xl w-full border-none focus:ring-2 focus:ring-gold outline-none">
+                    </div>
+                    <input type="email" placeholder="Email Address" class="bg-platinum p-4 rounded-xl w-full border-none focus:ring-2 focus:ring-gold outline-none">
+                    <textarea placeholder="Tell us about your project" class="bg-platinum p-4 rounded-xl w-full h-32 border-none focus:ring-2 focus:ring-gold outline-none"></textarea>
+                    <button class="bg-coral w-full py-5 text-white font-black text-lg rounded-xl btn-pulse uppercase tracking-widest">Send Quote Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-charcoal text-white/50 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:row justify-between items-center border-t border-white/10 pt-8">
+            <p>© 2026 Pavcon Industries Zimbabwe. All Rights Reserved.</p>
+            <div class="flex space-x-6 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white transition">Instagram</a>
+                <a href="#" class="hover:text-white transition">LinkedIn</a>
+                <a href="#" class="hover:text-white transition">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="exit-intent" class="fixed inset-0 z-[200] bg-navy/90 hidden items-center justify-center p-6">
+        <div class="bg-white p-10 rounded-3xl max-w-lg text-center relative">
+            <button onclick="document.getElementById('exit-intent').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400"><i data-lucide="x"></i></button>
+            <h2 class="font-serif text-3xl text-navy mb-4">Wait! Get 10% OFF</h2>
+            <p class="text-gray-600 mb-8">Book your site visit in the next 15 minutes and save over $1,000 on your luxury paving project.</p>
+            <a href="https://wa.me/263772403722" class="bg-coral block w-full py-4 text-white font-bold rounded-xl mb-4">LOCK IN MY DISCOUNT</a>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white', 'shadow-lg', 'py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.remove('bg-white', 'shadow-lg', 'py-2');
+                nav.classList.add('py-4');
+            }
+        });
+
+        // Hero Entrance
+        gsap.from(".glass-hero", {
+            duration: 1.5,
+            y: 50,
+            opacity: 0,
+            ease: "power4.out"
+        });
+
+        // Reveal animations on scroll
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+
+        // Exit intent logic (simplified)
+        let exitShown = false;
+        document.addEventListener("mouseleave", (e) => {
+            if (e.clientY < 0 && !exitShown) {
+                document.getElementById('exit-intent').style.display = 'flex';
+                exitShown = true;
+            }
+        });
+    </script>
 </body>
 </html>
