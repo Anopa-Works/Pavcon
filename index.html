@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pavcon Industries Zimbabwe - The definitive authority in architectural paving and driveways.">
-    <title>Pavcon Industries | The Standard in Paving</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <title>Pavcon Industries | Architectural Paving Authority</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
             theme: {
@@ -20,8 +15,8 @@
                     colors: {
                         egyptian: '#1034A6',
                         chilli: '#CB2602',
-                        stone: '#F4F4F2',    /* Muted premium background */
-                        onyx: '#1A1A1B',     /* Bold typography */
+                        stone: '#F8F8F6',
+                        onyx: '#111111',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -33,222 +28,169 @@
     </script>
 
     <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        .hero-mask {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal-on-scroll.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .image-placeholder-overlay {
-            background: rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .paving-grid { background-image: radial-gradient(#111 0.5px, transparent 0.5px); background-size: 30px 30px; }
+        .border-subtle { border-color: rgba(0,0,0,0.05); }
     </style>
 </head>
-<body class="bg-stone text-onyx antialiased">
+<body class="bg-stone text-onyx font-sans overflow-x-hidden">
 
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-700 py-8">
-        <div class="max-w-7xl mx-auto px-8 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-egyptian flex items-center justify-center text-white font-bold text-xl">P</div>
-                <div class="flex flex-col">
-                    <span class="text-white font-display font-extrabold text-base tracking-tighter leading-none transition-all duration-500" id="logo-text-top">PAVCON</span>
-                    <span class="text-white font-display font-bold text-[9px] tracking-[0.4em] transition-all duration-500" id="logo-text-bottom">INDUSTRIES</span>
-                </div>
-            </div>
-            
-            <div class="hidden md:flex items-center space-x-14 text-[11px] font-semibold tracking-[0.2em] uppercase">
-                <a href="#home" class="text-white/70 hover:text-white transition nav-link">Home</a>
-                <a href="#expertise" class="text-white/70 hover:text-white transition nav-link">Expertise</a>
-                <a href="#projects" class="text-white/70 hover:text-white transition nav-link">Portfolio</a>
-                <a href="#contact" class="bg-chilli text-white px-8 py-3 rounded-sm hover:bg-egyptian transition">INQUIRE</a>
-            </div>
+    <nav class="fixed w-full z-50 mix-blend-difference py-6 px-10 flex justify-between items-center text-white">
+        <div class="flex items-baseline gap-1">
+            <span class="font-display font-black text-2xl tracking-tighter">PAVCON</span>
+            <span class="w-1.5 h-1.5 bg-chilli rounded-full"></span>
+        </div>
+        <div class="hidden md:flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase">
+            <a href="#about" class="hover:text-chilli transition">The Standard</a>
+            <a href="#expertise" class="hover:text-chilli transition">Expertise</a>
+            <a href="#projects" class="hover:text-chilli transition">Portfolio</a>
+            <a href="https://wa.me/263772403722" class="text-chilli">Inquire</a>
         </div>
     </nav>
 
-    <section id="home" class="relative h-screen flex items-center justify-start overflow-hidden hero-mask">
-        <div class="max-w-7xl mx-auto px-8 w-full relative z-10 pt-20">
-            <div class="max-w-3xl">
-                <h2 class="text-white text-xs font-bold tracking-[0.6em] uppercase mb-8 opacity-90">Premium Paving Solutions</h2>
-                <h1 class="text-6xl md:text-8xl font-display font-extrabold text-white mb-10 leading-[0.9] tracking-tighter">
-                    Driveways <br> Built for <span class="italic font-light">Legacy.</span>
-                </h1>
-                <p class="text-white/80 text-xl font-light mb-14 leading-relaxed max-w-xl">
-                    Quietly dominating Harare’s most prestigious estates through precision engineering and unrivaled surface design.
+    <section class="relative h-screen flex items-center bg-onyx overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?auto=format&fit=crop&q=80&w=2000" 
+                 class="w-full h-full object-cover opacity-50 grayscale" alt="Paving Detail">
+        </div>
+        <div class="relative z-10 px-10 md:px-24 w-full">
+            <h2 class="text-chilli font-bold tracking-[0.5em] text-xs uppercase mb-6">Harare, Zimbabwe</h2>
+            <h1 class="text-6xl md:text-[120px] font-display font-black text-white leading-[0.85] tracking-tighter mb-10">
+                ENGINEERED <br>SURFACES.
+            </h1>
+            <p class="text-white/60 max-w-lg text-lg font-light leading-relaxed mb-12">
+                We define the ground you walk on. Pavcon Industries delivers industrial-grade paving solutions for Zimbabwe’s most prestigious residential and commercial estates.
+            </p>
+            <a href="#projects" class="inline-block border border-white/20 px-12 py-5 text-white text-[10px] font-bold tracking-[0.4em] uppercase hover:bg-white hover:text-onyx transition-all">View Recent Works</a>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 px-10 md:px-24 paving-grid">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <span class="text-chilli font-black text-4xl mb-4 block">01</span>
+                <h3 class="text-4xl md:text-5xl font-display font-black tracking-tight mb-8">
+                    Strength is in the <span class="text-egyptian">Foundation.</span>
+                </h3>
+                <p class="text-onyx/70 text-lg leading-relaxed mb-6">
+                    A driveway is only as good as the earth beneath it. Unlike standard contractors, Pavcon applies civil engineering principles to every square meter. We ensure compaction, drainage, and load-bearing capacity meet international standards.
                 </p>
-                <div class="flex items-center gap-10">
-                    <a href="#expertise" class="text-white font-bold text-xs tracking-[0.3em] uppercase border-b-2 border-chilli pb-2 hover:border-white transition">Explore Surfaces</a>
-                    <div class="hidden md:block w-20 h-px bg-white/30"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-stone py-32 border-b border-onyx/5">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid lg:grid-cols-12 gap-16 items-start">
-                <div class="lg:col-span-7 reveal-on-scroll">
-                    <span class="text-chilli font-bold tracking-[0.4em] text-[10px] uppercase block mb-6">Structural Mastery</span>
-                    <h3 class="text-4xl md:text-5xl font-display font-extrabold leading-tight tracking-tight">
-                        We don't just lay pavers. <br>
-                        <span class="text-egyptian">We engineer presence.</span>
-                    </h3>
-                    <p class="mt-10 text-onyx/60 text-lg leading-relaxed max-w-xl">
-                        At Pavcon, we understand that a driveway is the first impression of a home. We prioritize sub-surface integrity to ensure your property remains a masterpiece for decades.
-                    </p>
-                </div>
-
-                <div class="lg:col-span-5 reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <div class="relative group h-[400px]">
-                        <img src="https://images.unsplash.com/photo-1516533075015-a3838414c3ca?q=80&w=800&auto=format&fit=crop" 
-                             alt="Luxury Paved Driveway" 
-                             class="w-full h-full object-cover grayscale transition duration-1000 group-hover:grayscale-0 shadow-2xl">
-                        <div class="absolute inset-0 image-placeholder-overlay opacity-0 group-hover:opacity-100 transition-opacity">
-                            PAVCON PAVING PICTURE
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="expertise" class="py-32 bg-stone">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="reveal-on-scroll">
-                    <div class="h-64 mb-8 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1590059302111-137a7f43325c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-white text-[10px] tracking-widest font-bold">DRIVEWAY INSTALLATION</div>
-                    </div>
-                    <h5 class="text-xl font-bold mb-4">Interlocking Design</h5>
-                    <p class="text-onyx/60 text-sm">Heavy-duty 80mm pavers engineered for high-traffic luxury residential entrances.</p>
-                </div>
-                <div class="reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="h-64 mb-8 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1621262657376-78486064d142?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-white text-[10px] tracking-widest font-bold">PRECISION KERBING</div>
-                    </div>
-                    <h5 class="text-xl font-bold mb-4">Architectural Edging</h5>
-                    <p class="text-onyx/60 text-sm">Structural kerbing that defines the boundaries of your property with clean, laser-straight lines.</p>
-                </div>
-                <div class="reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <div class="h-64 mb-8 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/20 flex items-center justify-center text-white text-[10px] tracking-widest font-bold">ESTATE EXTERIORS</div>
-                    </div>
-                    <h5 class="text-xl font-bold mb-4">Complete Surface Care</h5>
-                    <p class="text-onyx/60 text-sm">Full drainage integration and moss-resistant sealing for a permanent, maintenance-free finish.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-32 bg-stone">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-                <div class="reveal-on-scroll">
-                    <span class="text-chilli font-bold tracking-[0.4em] uppercase text-[10px]">The Archive</span>
-                    <h3 class="text-4xl md:text-5xl font-display font-extrabold mt-4">Selected Works.</h3>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
-                <div class="md:col-span-8 group relative overflow-hidden reveal-on-scroll">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200&auto=format&fit=crop" 
-                         alt="Finished Driveway" class="w-full h-[500px] object-cover transition duration-1000 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="text-white text-xs tracking-widest font-bold">PAVCON PAVING PICTURE</span>
-                    </div>
-                </div>
-                <div class="md:col-span-4 group relative overflow-hidden reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?q=80&w=800&auto=format&fit=crop" 
-                         alt="Paving Detail" class="w-full h-[500px] object-cover transition duration-1000 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span class="text-white text-xs tracking-widest font-bold">DRIVEWAY DETAIL</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="bg-onyx text-white py-24">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid md:grid-cols-2 gap-20 items-center border-b border-white/5 pb-20">
-                <div>
-                    <h4 class="text-4xl md:text-5xl font-display font-extrabold mb-8">Ready to define <br>your presence?</h4>
-                    <p class="text-white/40 text-lg mb-10 max-w-sm">Direct lines are open for elite residential paving inquiries in Harare.</p>
-                    <a href="https://wa.me/263772403722" class="inline-block bg-chilli px-10 py-5 text-xs font-bold tracking-[0.3em] hover:bg-white hover:text-onyx transition-all duration-500 uppercase">Start Your Project</a>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                <div class="grid grid-cols-2 gap-8 mt-12 border-t border-onyx/10 pt-10">
                     <div>
-                        <span class="text-chilli font-bold text-[10px] uppercase tracking-widest block mb-4">Direct</span>
-                        <p class="text-xl font-medium">+263 77 240 3722</p>
+                        <p class="font-display font-black text-3xl">45mPa</p>
+                        <p class="text-[10px] uppercase tracking-widest text-onyx/40">Concrete Density</p>
                     </div>
                     <div>
-                        <span class="text-chilli font-bold text-[10px] uppercase tracking-widest block mb-4">Location</span>
-                        <p class="text-xl font-medium">Eastlea, Harare</p>
+                        <p class="font-display font-black text-3xl">100%</p>
+                        <p class="text-[10px] uppercase tracking-widest text-onyx/40">Drainage Precision</p>
                     </div>
                 </div>
             </div>
-            <div class="pt-12 text-[10px] uppercase tracking-widest text-white/20 flex flex-col md:flex-row justify-between">
-                <p>&copy; 2026 Pavcon Industries. The Standard in Paving.</p>
-                <div class="flex gap-8">
-                    <a href="#" class="hover:text-white transition">Instagram</a>
-                    <a href="https://wa.me/263772403722" class="hover:text-white transition">WhatsApp</a>
+            <div class="reveal relative">
+                <img src="https://images.unsplash.com/photo-1516533075015-a3838414c3ca?auto=format&fit=crop&q=80&w=1200" 
+                     class="w-full h-[600px] object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-1000" alt="Driveway Construction">
+                <div class="absolute -bottom-6 -right-6 bg-egyptian text-white p-8 hidden md:block">
+                    <p class="text-xs tracking-widest uppercase font-bold">Pavcon Standard</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 bg-onyx text-white">
+        <div class="px-10 md:px-24 mb-20">
+            <span class="text-chilli font-bold tracking-[0.4em] text-[10px] uppercase">The Archive</span>
+            <h3 class="text-4xl md:text-6xl font-display font-black mt-4">Selected Driveways.</h3>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-1">
+            <div class="relative group h-[500px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                <div class="absolute bottom-10 left-10 transition-transform translate-y-4 group-hover:translate-y-0 duration-500">
+                    <p class="text-chilli font-bold text-xs tracking-widest mb-2 uppercase">Borrowdale Brooke</p>
+                    <h4 class="text-2xl font-display font-bold">The Slate Interlock</h4>
+                </div>
+            </div>
+            <div class="relative group h-[500px] overflow-hidden border-x border-white/10">
+                <img src="https://images.unsplash.com/photo-1590059302111-137a7f43325c?auto=format&fit=crop&q=80&w=800" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                <div class="absolute bottom-10 left-10">
+                    <p class="text-chilli font-bold text-xs tracking-widest mb-2 uppercase">Glen Lorne</p>
+                    <h4 class="text-2xl font-display font-bold">Industrial Cobblestone</h4>
+                </div>
+            </div>
+            <div class="relative group h-[500px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1621262657376-78486064d142?auto=format&fit=crop&q=80&w=800" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                <div class="absolute bottom-10 left-10">
+                    <p class="text-chilli font-bold text-xs tracking-widest mb-2 uppercase">Highlands Estate</p>
+                    <h4 class="text-2xl font-display font-bold">Architectural Kerbing</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="py-32 px-10 md:px-24 bg-white">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-10">
+            <div class="max-w-xl reveal">
+                <h3 class="text-4xl font-display font-black mb-6 uppercase">Technical <br>Capabilities</h3>
+                <p class="text-onyx/60 leading-relaxed">Our execution is divided into four distinct phases of excellence, ensuring the product delivered is final and permanent.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-10 w-full max-w-3xl">
+                <div class="reveal p-8 border border-onyx/5 hover:border-chilli transition-colors">
+                    <i class="fa-solid fa-layer-group text-chilli text-2xl mb-6"></i>
+                    <h5 class="font-bold mb-3 uppercase tracking-tighter">Sub-Base Engineering</h5>
+                    <p class="text-sm text-onyx/50">G5 material compaction to 98% MOD AASHTO density.</p>
+                </div>
+                <div class="reveal p-8 border border-onyx/5 hover:border-chilli transition-colors">
+                    <i class="fa-solid fa-ruler-combined text-chilli text-2xl mb-6"></i>
+                    <h5 class="font-bold mb-3 uppercase tracking-tighter">Custom Patterning</h5>
+                    <p class="text-sm text-onyx/50">Precision layout including herringbone, stretcher bond, and basketweave.</p>
+                </div>
+                <div class="reveal p-8 border border-onyx/5 hover:border-chilli transition-colors">
+                    <i class="fa-solid fa-droplet-slash text-chilli text-2xl mb-6"></i>
+                    <h5 class="font-bold mb-3 uppercase tracking-tighter">Surface Sealing</h5>
+                    <p class="text-sm text-onyx/50">Industrial-grade clear coating to prevent oil stains and moss growth.</p>
+                </div>
+                <div class="reveal p-8 border border-onyx/5 hover:border-chilli transition-colors">
+                    <i class="fa-solid fa-truck-ramp-box text-chilli text-2xl mb-6"></i>
+                    <h5 class="font-bold mb-3 uppercase tracking-tighter">Heavy Load Kerbing</h5>
+                    <p class="text-sm text-onyx/50">Reinforced edge restraints to prevent lateral shifting of pavers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone border-t border-onyx/10 py-20 px-10 md:px-24">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <div class="flex items-baseline gap-1 mb-4">
+                    <span class="font-display font-black text-3xl tracking-tighter uppercase">PAVCON</span>
+                    <span class="w-2 h-2 bg-chilli rounded-full"></span>
+                </div>
+                <p class="text-[10px] uppercase tracking-[0.5em] text-onyx/40">The Only Solution.</p>
+            </div>
+            <div class="flex flex-col items-center md:items-end">
+                <p class="text-xs tracking-widest uppercase font-bold text-onyx/40 mb-4 text-center md:text-right">Project Inquiries Only</p>
+                <a href="https://wa.me/263772403722" class="text-3xl md:text-5xl font-display font-black hover:text-chilli transition-colors">+263 77 240 3722</a>
+            </div>
+        </div>
+        <div class="mt-20 pt-10 border-t border-onyx/5 flex justify-between text-[10px] uppercase tracking-widest font-bold text-onyx/30">
+            <p>&copy; 2026 Pavcon Industries Zimbabwe</p>
+            <p>Harare / Eastlea</p>
         </div>
     </footer>
 
     <script>
-        const navbar = document.getElementById('navbar');
-        const logoTop = document.getElementById('logo-text-top');
-        const logoBottom = document.getElementById('logo-text-bottom');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('bg-stone', 'py-4', 'shadow-xl');
-                navbar.classList.remove('py-8');
-                logoTop.classList.replace('text-white', 'text-onyx');
-                logoBottom.classList.replace('text-white', 'text-chilli');
-                navLinks.forEach(link => link.classList.replace('text-white/70', 'text-onyx/70'));
-            } else {
-                navbar.classList.remove('bg-stone', 'py-4', 'shadow-xl');
-                navbar.classList.add('py-8');
-                logoTop.classList.replace('text-onyx', 'text-white');
-                logoBottom.classList.replace('text-chilli', 'text-white');
-                navLinks.forEach(link => link.classList.replace('text-onyx/70', 'text-white/70'));
-            }
-        });
-
+        // Scroll Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
