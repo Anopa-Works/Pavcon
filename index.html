@@ -169,6 +169,71 @@
         </div>
     </section>
 
+    <section id="projects" class="py-32 bg-stone">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div class="reveal-on-scroll">
+                    <span class="text-chilli font-bold tracking-[0.4em] uppercase text-[10px]">The Archive</span>
+                    <h3 class="text-4xl md:text-5xl font-display font-extrabold mt-4">Selected Works.</h3>
+                </div>
+                <p class="text-onyx/50 text-sm max-w-xs leading-relaxed reveal-on-scroll" style="transition-delay: 0.1s;">
+                    A curated look at the properties we have defined through precision and permanence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                <div class="md:col-span-8 group relative overflow-hidden reveal-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1621262657376-78486064d142?q=80&w=1200&auto=format&fit=crop" 
+                         alt="Luxury Estate Entrance" 
+                         class="w-full h-[500px] object-cover transition duration-1000 group-hover:scale-105 group-hover:grayscale-[0.5]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                        <span class="text-chilli text-xs font-bold tracking-widest uppercase mb-2">Residential Authority</span>
+                        <h4 class="text-white text-2xl font-display font-bold">The Borrowdale Estate</h4>
+                        <p class="text-white/70 text-sm mt-2">Custom 80mm Interlocking Slate Grey</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 group relative overflow-hidden reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1590059302111-137a7f43325c?q=80&w=800&auto=format&fit=crop" 
+                         alt="Modern Paving Detail" 
+                         class="w-full h-[500px] object-cover transition duration-1000 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                        <span class="text-chilli text-xs font-bold tracking-widest uppercase mb-2">Precision Geometry</span>
+                        <h4 class="text-white text-2xl font-display font-bold">Glen Lorne Drive</h4>
+                        <p class="text-white/70 text-sm mt-2">Architectural Kerbing & Drainage</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 group relative overflow-hidden reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1516533075015-a3838414c3ca?q=80&w=800&auto=format&fit=crop" 
+                         alt="Commercial Paving" 
+                         class="w-full h-[400px] object-cover transition duration-1000 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                        <h4 class="text-white text-xl font-display font-bold">Corporate Hub</h4>
+                        <p class="text-white/70 text-xs mt-1">High-Load Industrial Surfacing</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-8 group relative overflow-hidden reveal-on-scroll" style="transition-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
+                         alt="Estate Landscaping" 
+                         class="w-full h-[400px] object-cover transition duration-1000 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-10">
+                        <h4 class="text-white text-xl font-display font-bold">Highlands Estate</h4>
+                        <p class="text-white/70 text-xs mt-1">Full Turnkey Landscape & Civil Design</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center reveal-on-scroll">
+                <a href="https://wa.me/263772403722" class="text-[10px] font-bold tracking-[0.4em] uppercase text-onyx/40 hover:text-chilli transition">
+                    Request Full Project Catalog <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer id="contact" class="bg-onyx text-white py-24">
         <div class="max-w-7xl mx-auto px-8">
             <div class="grid md:grid-cols-2 gap-20 items-center border-b border-white/5 pb-20">
@@ -221,7 +286,7 @@
             }
         });
 
-        // Reveal Logic
+        // Reveal Logic (Handles all reveal-on-scroll elements including the new gallery)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
