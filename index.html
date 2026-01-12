@@ -3,975 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pavcon Industries: Premier paving, building construction, durawalls, and plumbing in Harare, Zimbabwe. Transform your space today.">
-    <meta name="keywords" content="paving Harare, durawalls Zimbabwe, construction contractors Zim, Pavcon, landscaping Harare, bricks Zimbabwe">
-    <meta name="author" content="Pavcon Industries">
-    <title>Pavcon Industries | Premier Paving & Construction Zimbabwe</title>
-
+    <title>Pavcon Industries | Master Builders & Paving Specialists</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* * COLOR PALETTE 
-         * Cloud Dancer (Backgrounds): #f0eee9
-         * Egyptian Blue (Primary/Text): #05334A
-         * Chilli Red (Accents/CTA): #B40023
-         */
-
         :root {
-            --cloud-dancer: #f0eee9;
-            --egyptian-blue: #05334A;
-            --chilli-red: #B40023;
+            --bg: #f0eee9; /* Cloud Dancer */
+            --primary: #05334A; /* Egyptian Blue */
+            --accent: #B40023; /* Chilli Red */
             --white: #ffffff;
-            --grey: #555555;
-            --font-heading: 'Montserrat', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --transition: all 0.3s ease;
+            --black: #021a26;
+            --glass: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: var(--bg); 
+            color: var(--primary); 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            background-color: var(--cloud-dancer);
-            color: var(--egyptian-blue);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* --- UI COMPONENTS --- */
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            font-family: var(--font-heading);
-            font-weight: 600;
-            border-radius: 4px;
-            transition: var(--transition);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--chilli-red);
-            color: var(--white);
-            border: 2px solid var(--chilli-red);
-        }
-
-        .btn-primary:hover {
-            background-color: transparent;
-            color: var(--chilli-red);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--egyptian-blue);
-            color: var(--egyptian-blue);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--egyptian-blue);
-            color: var(--white);
-        }
-
-        .section-padding {
-            padding: 80px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--egyptian-blue);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--chilli-red);
-            margin: 10px auto 0;
+        /* --- PRE-LOADER --- */
+        #loader {
+            position: fixed; height: 100vh; width: 100%; background: var(--primary);
+            z-index: 9999; display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-family: 'Syncopate'; transition: 1s ease;
         }
 
         /* --- NAVIGATION --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: var(--transition);
-            background: transparent;
-            padding: 20px 0;
+        nav {
+            position: fixed; width: 100%; padding: 30px 5%; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        header.scrolled {
-            background-color: var(--egyptian-blue);
-            padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        nav.scrolled {
+            padding: 15px 5%; background: rgba(5, 51, 74, 0.95);
+            backdrop-filter: blur(10px);
         }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .logo { 
+            font-family: 'Syncopate'; font-weight: 700; color: var(--white);
+            font-size: 1.4rem; letter-spacing: -1px;
         }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: 1px;
+        .logo span { color: var(--accent); }
+        .nav-links a {
+            color: var(--white); text-decoration: none; margin-left: 40px;
+            font-weight: 400; font-size: 0.85rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s;
         }
-
-        .logo span {
-            color: var(--chilli-red);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            text-transform: uppercase;
-        }
-
-        nav ul li a:hover {
-            color: var(--chilli-red);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+        .nav-links a:hover { color: var(--accent); }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(5, 51, 74, 0.7), rgba(5, 51, 74, 0.5)), url('https://images.unsplash.com/photo-1621252179027-94459d27d3ee?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding-top: 60px;
+            height: 100vh; position: relative; overflow: hidden;
+            display: flex; align-items: center; background: var(--black);
         }
-
+        .hero-video-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(5,51,74,0.9) 0%, rgba(5,51,74,0.4) 100%);
+            z-index: 1;
+        }
+        .hero-img {
+            position: absolute; width: 100%; height: 100%; 
+            object-fit: cover; opacity: 0.6; filter: grayscale(40%) contrast(110%);
+        }
         .hero-content {
-            max-width: 900px;
-            padding: 0 20px;
+            position: relative; z-index: 2; width: 85%; margin: 0 auto;
+        }
+        .hero-content h1 {
+            font-family: 'Syncopate'; font-size: clamp(2rem, 6vw, 5rem);
+            color: var(--white); line-height: 1; margin-bottom: 20px;
+        }
+        .hero-content p {
+            color: var(--white); font-weight: 300; max-width: 500px;
+            font-size: 1.1rem; margin-bottom: 40px; border-left: 3px solid var(--accent);
+            padding-left: 20px; opacity: 0.9;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        /* --- PREMIUM BUTTONS --- */
+        .cta-btn {
+            position: relative; display: inline-block; padding: 18px 45px;
+            background: var(--accent); color: var(--white); font-weight: 700;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px;
+            overflow: hidden; transition: 0.4s; z-index: 1;
+        }
+        .cta-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%;
+            height: 100%; background: var(--white); transition: 0.4s; z-index: -1;
+        }
+        .cta-btn:hover { color: var(--accent); }
+        .cta-btn:hover::before { left: 0; }
+
+        /* --- SERVICES: THE "BENTO" GRID --- */
+        .services { padding: 150px 5%; background: var(--bg); }
+        .grid-layout {
+            display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;
+        }
+        .service-item {
+            position: relative; height: 400px; overflow: hidden;
+            background: var(--primary); border-radius: 2px;
+        }
+        .item-lg { grid-column: span 8; }
+        .item-sm { grid-column: span 4; }
+        .service-img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.5; transition: 0.8s;
+        }
+        .service-item:hover .service-img { transform: scale(1.1); opacity: 0.3; }
+        .service-text {
+            position: absolute; bottom: 40px; left: 40px; color: var(--white);
+        }
+        .service-text h3 { font-family: 'Syncopate'; font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* --- STATS SECTION --- */
+        .stats { background: var(--primary); padding: 100px 5%; display: flex; justify-content: space-around; color: var(--white); text-align: center;}
+        .stat-box h2 { font-size: 3rem; font-family: 'Syncopate'; color: var(--accent); }
+
+        /* --- PREMIUM FORM --- */
+        .contact-section { padding: 100px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;}
+        .input-group { position: relative; margin-bottom: 30px; }
+        .input-group input, .input-group textarea {
+            width: 100%; padding: 15px 0; background: transparent; border: none;
+            border-bottom: 1px solid var(--primary); outline: none; font-size: 1.1rem;
+        }
+        .input-group label { position: absolute; left: 0; top: 15px; transition: 0.3s; pointer-events: none; opacity: 0.5; }
+        input:focus + label, input:valid + label, textarea:focus + label { top: -15px; font-size: 0.8rem; color: var(--accent); opacity: 1; }
+
+        /* --- FLOATING ELEMENTS --- */
+        .wa-float {
+            position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px;
+            background: #25d366; color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-size: 30px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4); z-index: 1000;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        /* --- ABOUT & STATS --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            color: var(--chilli-red);
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--grey);
-        }
-
-        .about-img {
-            position: relative;
-        }
-
-        .about-img img {
-            border-radius: 8px;
-            box-shadow: 20px 20px 0px var(--egyptian-blue);
-        }
-
-        /* --- SERVICES --- */
-        .services {
-            background-color: var(--white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--cloud-dancer);
-            padding: 40px 30px;
-            text-align: center;
-            border-radius: 8px;
-            transition: var(--transition);
-            border-bottom: 4px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-bottom: 4px solid var(--chilli-red);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--egyptian-blue);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        /* --- PRICING ESTIMATES --- */
-        .pricing-section {
-            background-color: var(--egyptian-blue);
-            color: var(--white);
-        }
-
-        .pricing-section .section-header h2 {
-            color: var(--white);
-        }
-
-        .pricing-table {
-            overflow-x: auto;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        th {
-            color: var(--chilli-red);
-            font-size: 1.1rem;
-        }
-
-        .price-tag {
-            font-weight: 700;
-            color: var(--cloud-dancer);
-        }
-
-        /* --- PORTFOLIO --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            height: 300px;
-            cursor: pointer;
-        }
-
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(5,51,74,0.9), transparent);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            transition: var(--transition);
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            bottom: 0;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .portfolio-overlay h4 {
-            color: var(--white);
-            margin-bottom: 5px;
-        }
-
-        .portfolio-overlay span {
-            color: var(--chilli-red);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* --- TESTIMONIALS --- */
-        .testimonials {
-            background-color: var(--white);
-            text-align: center;
-        }
-
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-item {
-            padding: 40px;
-            background: var(--cloud-dancer);
-            border-radius: 8px;
-            margin: 20px;
-            display: none; /* JS will handle visibility */
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .testimonial-item.active {
-            display: block;
-        }
-
-        .stars {
-            color: #FFD700;
-            margin-bottom: 15px;
-        }
-
-        .client-name {
-            margin-top: 15px;
-            font-weight: 700;
-            color: var(--egyptian-blue);
-        }
-
-        /* --- CONTACT --- */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            background: var(--white);
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .contact-info {
-            background: var(--egyptian-blue);
-            color: var(--white);
-            padding: 50px;
-        }
-
-        .contact-info h3 {
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-
-        .info-item i {
-            color: var(--chilli-red);
-            font-size: 1.2rem;
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-
-        .contact-form {
-            padding: 50px;
-            background: var(--cloud-dancer);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: var(--font-body);
-            background: var(--white);
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: none;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #032231;
-            color: var(--cloud-dancer);
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 {
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--chilli-red);
-        }
-
-        .badge-cifoz {
-            background: var(--white);
-            color: var(--egyptian-blue);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .copyright {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* --- WHATSAPP FLOAT --- */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 999;
-            transition: var(--transition);
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-
-        /* --- RESPONSIVE --- */
+        /* Responsive */
         @media (max-width: 900px) {
-            .hero h1 { font-size: 2.2rem; }
-            .about-grid, .contact-container { grid-template-columns: 1fr; }
-            .about-img { margin-top: 30px; }
-            .nav-container nav {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                background: var(--egyptian-blue);
-                width: 80%;
-                height: 100vh;
-                flex-direction: column;
-                padding: 40px;
-                transition: 0.4s;
-            }
-            .nav-container nav.active { right: 0; }
-            nav ul { flex-direction: column; }
-            nav ul li { margin: 15px 0; }
-            .mobile-menu-btn { display: block; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            .item-lg, .item-sm { grid-column: span 12; }
+            .nav-links { display: none; }
+            .contact-section { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header id="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">PAVCON <span>IND.</span></a>
-            <div class="mobile-menu-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="#hero" onclick="toggleMenu()">Home</a></li>
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#services" onclick="toggleMenu()">Services</a></li>
-                    <li><a href="#portfolio" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#contact" onclick="toggleMenu()" class="btn btn-primary" style="margin-top: -10px;">Get Quote</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <div id="loader">PAVCON INDUSTRIES_</div>
 
-    <section id="hero" class="hero">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-            <h1>Transform Your Space with Pavcon Industries</h1>
-            <p>Premier Paving, Construction & Durawalls in Zimbabwe. <br>Harare's Trusted Partner for Residential & Commercial Projects.</p>
-            <a href="#contact" class="btn btn-primary">Get Free Quote</a>
-            <a href="#services" class="btn btn-outline" style="border-color: #fff; color: #fff; margin-left: 10px;">Our Services</a>
+    <nav id="navbar">
+        <a href="#" class="logo">PAVCON<span>.</span></a>
+        <div class="nav-links">
+            <a href="#services">Architecture</a>
+            <a href="#projects">Portfolios</a>
+            <a href="#about">Philosophy</a>
+            <a href="#contact" class="cta-btn" style="padding: 10px 25px;">Estimate</a>
         </div>
-    </section>
+    </nav>
 
-    <section id="about" class="section-padding">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text" data-aos="fade-right">
-                    <div class="section-header" style="text-align: left;">
-                        <h2>Why Choose Pavcon?</h2>
-                    </div>
-                    <h3>MISSION & VISION</h3>
-                    <p>At Pavcon Industries, our mission is to provide construction solutions that exceed customer expectations through high-quality workmanship, timely delivery, and professional integrity.</p>
-                    
-                    <h3>VALUE ADDED SERVICES</h3>
-                    <p>We don't just build; we partner with you. From expert hardware supply to manufacturing top-tier pavers and bricks, we control the quality chain to ensure your project stands the test of time.</p>
-                    
-                    <ul style="list-style: none; margin-bottom: 20px;">
-                        <li><i class="fas fa-check-circle" style="color: var(--chilli-red);"></i> CIFOZ Member Certified</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--chilli-red);"></i> Over 10 Years Experience</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--chilli-red);"></i> Comprehensive Warranty</li>
-                    </ul>
-                </div>
-                <div class="about-img" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1590674899505-1c5c4195c60c?q=80&w=1000&auto=format&fit=crop" alt="Pavcon Construction Team Harare">
-                </div>
+    <section class="hero">
+        <div class="hero-video-overlay"></div>
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=2070" class="hero-img" alt="Luxury Paving">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-delay="400">STRUCTURAL <br><span style="color: var(--accent)">EXCELLENCE.</span></h1>
+            <p data-aos="fade-up" data-aos-delay="600">Zimbabwe's premier industrial partner in modern paving, building construction, and high-security durawalls. We manufacture the foundations of Harare's future.</p>
+            <div data-aos="fade-up" data-aos-delay="800">
+                <a href="#contact" class="cta-btn">Start Project</a>
             </div>
         </div>
     </section>
 
-    <section id="services" class="section-padding services">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Our Expertise</h2>
-                <p>Comprehensive Construction Solutions in Zimbabwe</p>
+    <section class="stats">
+        <div class="stat-box" data-aos="zoom-in"><h2>15+</h2><p>YEARS IN ZIMBABWE</p></div>
+        <div class="stat-box" data-aos="zoom-in" data-aos-delay="200"><h2>500+</h2><p>PROJECTS COMPLETED</p></div>
+        <div class="stat-box" data-aos="zoom-in" data-aos-delay="400"><h2>100%</h2><p>ZIMBABWEAN OWNED</p></div>
+    </section>
+
+    <section id="services" class="services">
+        <div style="margin-bottom: 80px;">
+            <h4 style="color: var(--accent); letter-spacing: 5px; font-family: 'Syncopate';">OUR CAPABILITIES</h4>
+            <h2 style="font-size: 3rem; font-family: 'Syncopate';">INTEGRATED CONSTRUCTION</h2>
+        </div>
+
+        <div class="grid-layout">
+            <div class="service-item item-lg" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=2070" class="service-img">
+                <div class="service-text">
+                    <h3>PAVING & LANDSCAPES</h3>
+                    <p>Bespoke outdoor surfaces for high-end residential and commercial zones.</p>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-road service-icon"></i>
-                    <h3>Paving</h3>
-                    <p>Expert driveway and outdoor paving using our own manufactured, high-strength pavers.</p>
+            <div class="service-item item-sm" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1589939705384-5185138a193d?auto=format&fit=crop&q=80&w=2070" class="service-img">
+                <div class="service-text">
+                    <h3>DURAWALLS</h3>
+                    <p>Security meets aesthetics.</p>
                 </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-building service-icon"></i>
-                    <h3>Building Construction</h3>
-                    <p>Full-scale residential and commercial building projects from foundation to roof.</p>
+            </div>
+            <div class="service-item item-sm" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2070" class="service-img">
+                <div class="service-text">
+                    <h3>PLUMBING</h3>
+                    <p>Industrial scale systems.</p>
                 </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-th service-icon"></i>
-                    <h3>Durawalls</h3>
-                    <p>Precast boundary walls (Durawalls) installation and repairs for security and privacy.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-faucet service-icon"></i>
-                    <h3>Plumbing</h3>
-                    <p>Professional plumbing installations and maintenance for modern homes.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
-                    <i class="fas fa-tree service-icon"></i>
-                    <h3>Landscaping</h3>
-                    <p>Transforming outdoor spaces with aesthetic design and functional layouts.</p>
-                </div>
-                <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
-                    <i class="fas fa-cubes service-icon"></i>
-                    <h3>Manufacturing</h3>
-                    <p>Production and supply of bricks, kerbstones, and pavers ensuring quality control.</p>
+            </div>
+            <div class="service-item item-lg" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2070" class="service-img">
+                <div class="service-text">
+                    <h3>MANUFACTURING</h3>
+                    <p>Pavcon proprietary bricks, kerbstones, and high-PSI pavers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding pricing-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Market Pricing Estimates (USD)</h2>
-                <p style="color: rgba(255,255,255,0.7);">Transparent estimates for the Zimbabwean Market</p>
+    <section id="contact" class="contact-section">
+        <div data-aos="fade-right">
+            <h2 style="font-family: 'Syncopate'; font-size: 2.5rem;">READY TO <br><span style="color: var(--accent)">BUILD?</span></h2>
+            <p style="margin-top: 30px; line-height: 2;">14744 Nkwisi Gardens, Tynwald, Harare.<br>Member of CIFOZ - Ensuring international standards on local ground.</p>
+            <div style="margin-top: 40px;">
+                <h4 style="color: var(--accent);">Direct Line</h4>
+                <p style="font-size: 1.5rem; font-weight: 700;">+263 77 240 3722</p>
             </div>
-            <div class="pricing-table" data-aos="flip-up">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Service Type</th>
-                            <th>Description</th>
-                            <th>Starting From (USD)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Driveway Paving</strong></td>
-                            <td>Labor + Materials (Interlocking Pavers)</td>
-                            <td class="price-tag">$15.00 / sqm</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Durawall Installation</strong></td>
-                            <td>Standard 2.1m Height (Per Bay)</td>
-                            <td class="price-tag">$45.00 / bay</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Brick Supply</strong></td>
-                            <td>Standard Common Bricks (Per 1000)</td>
-                            <td class="price-tag">$90.00</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Construction Labor</strong></td>
-                            <td>Bricklaying (Per 1000 bricks)</td>
-                            <td class="price-tag">Contact for Quote</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.6;">*Prices are indicative and subject to site inspection and material cost fluctuations.</p>
-            </div>
+        </div>
+
+        <div style="background: var(--white); padding: 50px; border-radius: 4px; box-shadow: 0 40px 100px rgba(0,0,0,0.05);" data-aos="fade-left">
+            <form id="premiumForm">
+                <div class="input-group">
+                    <input type="text" id="name" required>
+                    <label>Your Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" required>
+                    <label>Email Address</label>
+                </div>
+                <div class="input-group">
+                    <select id="service" style="width: 100%; padding: 15px 0; background: transparent; border: none; border-bottom: 1px solid var(--primary); outline: none;">
+                        <option value="Paving">Paving Project</option>
+                        <option value="Building">Building Construction</option>
+                        <option value="Durawalls">Durawall Security</option>
+                        <option value="Bricks">Brick/Stone Supply</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <textarea id="message" required></textarea>
+                    <label>Project Scope</label>
+                </div>
+                <button type="button" onclick="sendToWhatsApp()" class="cta-btn" style="width: 100%; border: none;">Request Consultation</button>
+            </form>
         </div>
     </section>
 
-    <section id="portfolio" class="section-padding">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Recent Projects</h2>
-                <p>A glimpse of our work across Harare and Zimbabwe</p>
+    <footer style="background: var(--primary); padding: 80px 5% 40px; color: var(--white);">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; flex-wrap: wrap; gap: 40px;">
+            <div style="max-width: 400px;">
+                <h3 class="logo">PAVCON<span>.</span></h3>
+                <p style="opacity: 0.6; margin-top: 20px;">We manufacture excellence. From the raw brick to the finished masterpiece, Pavcon Industries is Zimbabwe's vertical integration leader in construction.</p>
             </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1621156598284-90fa77073eb4?q=80&w=1000" alt="Driveway Paving Harare">
-                    <div class="portfolio-overlay">
-                        <h4>Residential Paving</h4>
-                        <span>Tynwald, Harare</span>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1605117882932-f9e32b03ef3c?q=80&w=1000" alt="Modern House Construction">
-                    <div class="portfolio-overlay">
-                        <h4>Full Build Construction</h4>
-                        <span>Borrowdale</span>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1592383568260-1e96a4da9003?q=80&w=1000" alt="Durawall Zimbabwe">
-                    <div class="portfolio-overlay">
-                        <h4>Durawall & Security</h4>
-                        <span>Mt Pleasant</span>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1558435186-d31d10214a1f?q=80&w=1000" alt="Commercial Paving">
-                    <div class="portfolio-overlay">
-                        <h4>Commercial Landscaping</h4>
-                        <span>Harare CBD</span>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="#contact" class="btn btn-outline">View More Projects</a>
+            <div>
+                <h4 style="margin-bottom: 20px; font-family: 'Syncopate'; font-size: 0.8rem;">Links</h4>
+                <p><a href="#" style="color: var(--white); opacity: 0.6; text-decoration: none;">Privacy Policy</a></p>
+                <p><a href="#" style="color: var(--white); opacity: 0.6; text-decoration: none;">CIFOZ Verification</a></p>
             </div>
         </div>
-    </section>
-
-    <section class="section-padding testimonials">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Client Testimonials</h2>
-            </div>
-            <div class="testimonial-slider" id="testimonial-slider">
-                <div class="testimonial-item active">
-                    <div class="stars">★★★★★</div>
-                    <p>"Pavcon transformed our driveway completely. The team was professional, the pavers are high quality, and they finished on time. Highly recommended for anyone in Harare."</p>
-                    <div class="client-name">- Tawanda M., Westgate</div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="stars">★★★★★</div>
-                    <p>"We hired Pavcon for a durawall installation and plumbing work. Excellent service and very transparent pricing in USD. A trustworthy construction partner."</p>
-                    <div class="client-name">- Sarah L., Avondale</div>
-                </div>
-                <div class="testimonial-item">
-                    <div class="stars">★★★★★</div>
-                    <p>"The quality of bricks and kerbstones they manufacture is superior to what we found elsewhere. Great value for money."</p>
-                    <div class="client-name">- Brian K., Contractor</div>
-                </div>
-            </div>
-            <div style="margin-top: 20px;">
-                <span onclick="prevTestimonial()" style="cursor: pointer; font-size: 2rem; color: var(--egyptian-blue); margin: 0 10px;">&#8249;</span>
-                <span onclick="nextTestimonial()" style="cursor: pointer; font-size: 2rem; color: var(--egyptian-blue); margin: 0 10px;">&#8250;</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="section-padding">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <h2>Get A Free Quote</h2>
-                <p>Ready to build? Contact us today.</p>
-            </div>
-            <div class="contact-container" data-aos="fade-up">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p style="margin-bottom: 30px;">Visit us at our Tynwald offices or reach out via phone/WhatsApp.</p>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Address:</strong><br>
-                            14744 Nkwisi Gardens,<br>
-                            Tynwald, Harare, Zimbabwe
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Phone / WhatsApp:</strong><br>
-                            <a href="https://wa.me/263772403722">+263 77 240 3722</a>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email:</strong><br>
-                            info@pavcon.zw
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 30px; border-radius: 4px; overflow: hidden; height: 200px;">
-                        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=Tynwald%2C%20Harare&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-                    </div>
-                </div>
-
-                <div class="contact-form">
-                    <form id="quoteForm" onsubmit="submitForm(event)">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" required placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" required placeholder="+263 7..." >
-                        </div>
-                        <div class="form-group">
-                            <label for="service">Service Required</label>
-                            <select id="service">
-                                <option>Paving</option>
-                                <option>Building Construction</option>
-                                <option>Durawalls</option>
-                                <option>Plumbing</option>
-                                <option>Landscaping</option>
-                                <option>Brick/Paver Supply</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" required placeholder="Tell us about your project location and size..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message via WhatsApp</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h4>Pavcon Industries</h4>
-                    <p>Premier construction and paving solutions in Zimbabwe. We build dreams from the ground up.</p>
-                    <div class="badge-cifoz">
-                        <i class="fas fa-certificate"></i> CIFOZ Member
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#portfolio">Portfolio</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li>Paving & Driveways</li>
-                        <li>Building Construction</li>
-                        <li>Durawalls</li>
-                        <li>Plumbing</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <div style="display: flex; gap: 15px; font-size: 1.2rem;">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 Pavcon Industries. All Rights Reserved. | SEO: Paving Harare, Construction Zimbabwe.</p>
-            </div>
-        </div>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.8rem; opacity: 0.4;">&copy; 2026 PAVCON INDUSTRIES | DESIGNED FOR EXCELLENCE</p>
     </footer>
 
-    <a href="https://wa.me/263772403722?text=Hi%20Pavcon%2C%20I%20saw%20your%20website%20and%20would%20like%20a%20quote." class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/263772403722" class="wa-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
-        AOS.init({
-            once: true,
-            offset: 100
-        });
+        // Loader
+        window.onload = () => {
+            document.getElementById('loader').style.opacity = '0';
+            setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+        };
 
-        // Sticky Navbar Script
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        // Scroll Effects
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        };
 
-        // Mobile Menu Toggle
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            nav.classList.toggle('active');
-        }
+        AOS.init({ duration: 1000, once: true });
 
-        // Testimonial Carousel Logic
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial-item');
-
-        function showTestimonial(index) {
-            testimonials.forEach(t => t.classList.remove('active'));
-            testimonials[index].classList.add('active');
-        }
-
-        function nextTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }
-
-        function prevTestimonial() {
-            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }
-
-        // Auto-rotate testimonials
-        setInterval(nextTestimonial, 5000);
-
-        // Form to WhatsApp Logic
-        function submitForm(e) {
-            e.preventDefault();
+        function sendToWhatsApp() {
             const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
             const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
-
-            const text = `*New Website Inquiry*%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Service:* ${service}%0A*Message:* ${message}`;
-            
-            // Redirect to WhatsApp
+            const msg = document.getElementById('message').value;
+            const text = `*PAVCON PREMIUM INQUIRY*%0A*Client:* ${name}%0A*Interest:* ${service}%0A*Project:* ${msg}`;
             window.open(`https://wa.me/263772403722?text=${text}`, '_blank');
         }
     </script>
